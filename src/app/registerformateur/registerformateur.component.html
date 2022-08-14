@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+
+
+
+<div class="login-area pt-100">
+    <div class="container">
+        <h2>Inscription formateur</h2>
+
+        <form [formGroup]="registerForm" (ngsubmit)="registerFormateur()">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nom" formControlName="nom">
+            </div>
+            <div *ngIf="nom?.touched && nom?.invalid">
+                <small class="text-danger" *ngIf="nom?.errors?.['required']">Nom
+                    est obligatoire</small>
+
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom">
+            </div>
+            <div *ngIf="prenom?.touched && prenom?.invalid">
+                <small class="text-danger" *ngIf="prenom?.errors?.['required']">Prenom
+                    est obligatoire</small>
+
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email" formControlName="email">
+            </div>
+            <div *ngIf="email?.touched && email?.invalid">
+                <small class="text-danger" *ngIf="email?.errors?.['required']">Email
+                    est obligatoire</small>
+                <small class="text-danger" *ngIf="email?.errors?.['email']">Respecter le format
+                    de l'Adresse email</small>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" formControlName="mdp">
+            </div>
+            <div *ngIf="mdp?.touched && mdp?.invalid">
+                <small class="text-danger" *ngIf="mdp?.errors?.['required']">Mot de passe
+                    est obligatoire</small>
+
+            </div>
+            <div class="login-sign-in">
+                <ul>
+                    <li>Have Account ?</li>
+                    <li>
+                        <a routerLink="/loginformateur">Sign In Here</a>
+                    </li>
+                </ul>
+                <div class="text-center">
+                    <button type="submit" (click)="registerFormateur()" class="btn login-btn">Sign Up</button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+<app-footer></app-footer>

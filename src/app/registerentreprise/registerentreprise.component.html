@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+
+<div class="login-area pt-100">
+    <div class="container">
+        <h2>Inscription entreprise</h2>
+
+        <form [formGroup]="registerForm" (ngsubmit)="registerEntreprise()">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nom" formControlName="nom">
+            </div>
+            <div *ngIf="nom?.touched && nom?.invalid">
+                <small class="text-danger" *ngIf="nom?.errors?.['required']">Nom
+                    est obligatoire</small>
+
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+            </div>
+            <div *ngIf="email?.touched && email?.invalid">
+                <small class="text-danger" *ngIf="email?.errors?.['required']">Email
+                    est obligatoire</small>
+                <small class="text-danger" *ngIf="email?.errors?.['email']">Respecter le format
+                    de l'Adresse email</small>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" formControlName="mdp">
+            </div>
+            <div *ngIf="mdp?.touched && mdp?.invalid">
+                <small class="text-danger" *ngIf="mdp?.errors?.['required']">Mot de passe
+                    est obligatoire</small>
+
+            </div>
+        </form>
+        <div class="login-sign-in">
+            <ul>
+                <li> Have Account ?</li>
+                <li>
+                    <a routerLink="/loginentreprise">Sign In Here</a>
+                </li>
+            </ul>
+            <div class="text-center">
+                <button type="submit" (click)="registerEntreprise()" class="btn login-btn">Sign Up</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<app-footer></app-footer>

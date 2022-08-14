@@ -1,0 +1,66 @@
+<app-header></app-header>
+
+
+
+
+<div class="create-account-area pt-100 pb-100">
+    <div class="container">
+
+        <div class="create-information">
+            <div class="create-photo">
+                <form (ngSubmit)="modifierEntreprise()">
+                    <h3>Modifier le profile</h3>
+
+                    <div class="row align-items-center">
+                        <div class="col-lg-4">
+                            <div class="create-photo-item">
+                                <div class="create-photo-left">
+                                    <div class="d-table">
+                                        <div class="d-table-cell">
+                                            <div class="form-group">
+                                                <i class="icofont-photobucket"></i>
+                                                <input type="file" class="form-control-file" accept="image/*"
+                                                    (change)="onSelectFile($event)">
+                                                <img [src]="imgURL" height="200" *ngIf="imgURL">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="create-photo-item">
+                                <div class="create-photo-right">
+                                    <div class="form-group">
+                                        <label>Nom</label>
+                                        <input type="text" class="form-control" placeholder="Nom" name="nom"
+                                            [(ngModel)]="currentUser.nom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" placeholder="Email" name="email"
+                                            [(ngModel)]="currentUser.email">
+                                    </div>
+                                    <div class="text-right d-flex justify-content-center">
+                                        <button type="submit" (click)="modifierEntreprise()"
+                                            class="btn create-photo-btn">Modifier</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+<app-footer></app-footer>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CrudService } from '../service/crud.service';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private service: CrudService,
+
+  ) { }
 
   ngOnInit(): void {
+    this.service.acessLogin()
+
   }
 
 }

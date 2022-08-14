@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VirtualTimeScheduler } from 'rxjs';
+import { CrudService } from '../service/crud.service';
 
 @Component({
   selector: 'app-login',
@@ -7,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   constructor(
+    private service: CrudService
+
   ) { }
 
 
 
   ngOnInit(): void {
+    this.service.acessLogin()
+
   }
 
 }

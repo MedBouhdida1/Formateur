@@ -1,244 +1,46 @@
-<div id="wrapper">
+<app-header></app-header>
 
 
-    <!-- Header
-    ================================================== -->
-    <header class="sticky-header">
-        <div class="container">
-            <div class="sixteen columns">
 
-                <!-- Logo -->
-                <div id="logo">
-                    <h1><a href="index-2.html"><img src="../../../assets/images/logo.png" alt="Work Scout" /></a></h1>
-                </div>
-
-                <!-- Menu -->
-                <nav id="navigation" class="menu">
-                    <ul id="responsive">
-
-                        <li><a href="index-2.html">Home</a>
-                            <ul>
-                                <li><a href="index-2.html">Home #1</a></li>
-                                <li><a href="index-3.html">Home #2</a></li>
-                                <li><a href="index-4.html">Home #3</a></li>
-                                <li><a href="index-5.html">Home #4</a></li>
-                                <li><a href="index-6.html">Home #5</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="#">Pages</a>
-                            <ul>
-                                <li><a href="job-page.html">Job Page</a></li>
-                                <li><a href="job-page-alt.html">Job Page Alternative</a></li>
-                                <li><a href="resume-page.html">Resume Page</a></li>
-                                <li><a href="shortcodes.html">Shortcodes</a></li>
-                                <li><a href="icons.html">Icons</a></li>
-                                <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="#">Browse Listings</a>
-                            <ul>
-                                <li><a href="browse-jobs.html">Browse Jobs</a></li>
-                                <li><a href="browse-resumes.html">Browse Resumes</a></li>
-                                <li><a href="browse-categories.html">Browse Categories</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="#">Dashboard</a>
-                            <ul>
-                                <li><a href="dashboard.html">Dashboard</a></li>
-                                <li><a href="dashboard-messages.html">Messages</a></li>
-                                <li><a href="dashboard-manage-resumes.html">Manage Resumes</a></li>
-                                <li><a href="dashboard-add-resume.html">Add Resume</a></li>
-                                <li><a href="dashboard-job-alerts.html">Job Alerts</a></li>
-                                <li><a href="dashboard-manage-jobs.html">Manage Jobs</a></li>
-                                <li><a href="dashboard-manage-applications.html">Manage Applications</a></li>
-                                <li><a href="dashboard-add-job.html">Add Job</a></li>
-                                <li><a href="dashboard-my-profile.html">My Profile</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-
-                    <ul class="responsive float-right">
-                        <li><a href="my-account.html#tab2"><i class="fa fa-user"></i> Sign Up</a></li>
-                        <li><a href="my-account.html"><i class="fa fa-lock"></i> Log In</a></li>
-                    </ul>
-
-                </nav>
-
-                <!-- Navigation -->
-                <div id="mobile-navigation">
-                    <a href="#menu" class="menu-trigger"><i class="fa fa-reorder"></i> Menu</a>
-                </div>
-
-            </div>
-        </div>
-    </header>
-    <div class="clearfix"></div>
-
-
-    <!-- Titlebar
-    ================================================== -->
-    <div id="titlebar" class="single">
-        <div class="container">
-
-            <div class="sixteen columns">
-                <h2>My Account</h2>
-                <nav id="breadcrumbs">
-                    <ul>
-                        <li>You are here:</li>
-                        <li><a href="#">Home</a></li>
-                        <li>My Account</li>
-                    </ul>
-                </nav>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- Content
-    ================================================== -->
-
-    <!-- Container -->
+<div class="login-area pt-100">
     <div class="container">
-
-        <div class="my-account">
-
-            <ul class="tabs-nav">
-                <li class="active"><a href="#tab2">Register</a></li>
-
-                <li><a routerLink="/login">Login</a></li>
-            </ul>
-
-            <div class="tabs-container">
-
-
-                <!-- Register -->
-                <div class="tab-content" id="tab2">
-
-                    <form method="post" class="register">
-
-                        <p class="form-row form-row-wide">
-                            <label for="username2">Username:
-                                <i class="ln ln-icon-Male"></i>
-                                <input type="text" class="input-text" name="username" id="username2" value="" />
-                            </label>
-                        </p>
-
-                        <p class="form-row form-row-wide">
-                            <label for="email2">Email Address:
-                                <i class="ln ln-icon-Mail"></i>
-                                <input type="text" class="input-text" name="email" id="email2" value="" />
-                            </label>
-                        </p>
-
-                        <p class="form-row form-row-wide">
-                            <label for="password1">Password:
-                                <i class="ln ln-icon-Lock-2"></i>
-                                <input class="input-text" type="password" name="password1" id="password1" />
-                            </label>
-                        </p>
-
-                        <p class="form-row form-row-wide">
-                            <label for="password2">Repeat Password:
-                                <i class="ln ln-icon-Lock-2"></i>
-                                <input class="input-text" type="password" name="password2" id="password2" />
-                            </label>
-                        </p>
-
-                        <p class="form-row">
-                            <input type="submit" class="button border fw margin-top-10" name="register"
-                                value="Register" />
-                        </p>
-
-                    </form>
+        <h2>Créer un compte</h2>
+        <div class="login-wrap">
+            <div class="row">
+                <div class="col-sm-6 col-lg-6">
+                    <div class="jobseeker-item">
+                        <div class="jobseeker-icon">
+                            <i class="flaticon-job-search"></i>
+                        </div>
+                        <div class="jobseeker-inner">
+                            <span>Entreprise</span>
+                            <h3>S'inscrire en tant qu'entreprise</h3>
+                        </div>
+                        <a routerLink="/registerentreprise">S'inscrire
+                            <i class="icofont-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
-
-
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- Footer
-    ================================================== -->
-    <div class="margin-top-30"></div>
-
-    <div id="footer">
-        <!-- Main -->
-        <div class="container">
-
-            <div class="seven columns">
-                <h4>About</h4>
-                <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut
-                    lacinia
-                    tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-                <a href="#" class="button">Get Started</a>
-            </div>
-
-            <div class="three columns">
-                <h4>Company</h4>
-                <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Our Blog</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Hiring Hub</a></li>
-                </ul>
-            </div>
-
-            <div class="three columns">
-                <h4>Press</h4>
-                <ul class="footer-links">
-                    <li><a href="#">In the News</a></li>
-                    <li><a href="#">Press Releases</a></li>
-                    <li><a href="#">Awards</a></li>
-                    <li><a href="#">Testimonials</a></li>
-                    <li><a href="#">Timeline</a></li>
-                </ul>
-            </div>
-
-            <div class="three columns">
-                <h4>Browse</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Freelancers by Category</a></li>
-                    <li><a href="#">Freelancers in USA</a></li>
-                    <li><a href="#">Freelancers in UK</a></li>
-                    <li><a href="#">Freelancers in Canada</a></li>
-                    <li><a href="#">Freelancers in Australia</a></li>
-                    <li><a href="#">Find Jobs</a></li>
-
-                </ul>
-            </div>
-
-        </div>
-
-        <!-- Bottom -->
-        <div class="container">
-            <div class="footer-bottom">
-                <div class="sixteen columns">
-                    <h4>Follow Us</h4>
-                    <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                        <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
-                    </ul>
-                    <div class="copyrights">© Copyright 2018 by <a href="#">Work Scout</a>. All Rights Reserved.</div>
+                <div class="col-sm-6 col-lg-6">
+                    <div class="jobseeker-item">
+                        <div class="jobseeker-icon">
+                            <i class="flaticon-recruitment"></i>
+                        </div>
+                        <div class="jobseeker-inner">
+                            <span>Formateur</span>
+                            <h3>S'inscrire en tant que formateur</h3>
+                        </div>
+                        <a routerLink="/registerformateur">S'inscrire
+                            <i class="icofont-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
+
     </div>
-
-    <!-- Back To Top Button -->
-    <div id="backtotop"><a href="#"></a></div>
-
 </div>
+
+
+<app-footer></app-footer>
