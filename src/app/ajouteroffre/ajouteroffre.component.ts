@@ -17,7 +17,7 @@ export class AjouteroffreComponent implements OnInit {
   userFile: any
   addOffreForm: FormGroup
   now = new Date();
-
+  userType: any;
   constructor(
     private service: CrudService,
     private router: Router,
@@ -127,9 +127,9 @@ export class AjouteroffreComponent implements OnInit {
     let offre = new Offres(
       undefined, data.titre, data.site, data.salaire, data.localisation,
       data.type, undefined, data.description, data.nbrPersonnes,
-      data.genre, data.langue, data.dateExpir, this.now.toLocaleDateString(), data.niveau, this.imgURL);
-    console.log(offre);
+      data.genre, data.langue, data.dateExpir, this.now.toISOString().slice(0, 10), data.niveau, this.imgURL);
 
+    console.log(offre);
     if (data.titre == 0 || data.description == 0 || data.salaire == 0 || data.localisation == 0 || data.type == 0
       || data.nbrPersonnes == 0 || data.genre == 0 || data.langue == 0 || data.dateExpir == 0 || data.niveau == 0) {
       this.toast.info({
@@ -140,28 +140,37 @@ export class AjouteroffreComponent implements OnInit {
       );
     }
     else {
+      if (this.now.toISOString().slice(0, 10) > data.dateExpir) {
+        this.toast.info({
+          summary: "veuillez verifier la date d'expiration"
+        })
+      }
+      else {
 
-      this.service.addOffre(offre).subscribe(
+        this.service.addOffre(offre).subscribe(
 
-        res => {
-          console.log(res);
+          res => {
+            console.log(res);
 
-          this.router.navigate(['/offre']);
-          this.toast.info({
-            summary: "Votre demande est en cours de traitement"
-          })
-        },
-        err => {
-          console.log(err);
-          this.toast.error({
-            detail: "Error msg",
-            summary: "verifier votre formulaire"
-          });
+            this.router.navigate(['/offre']);
+            this.toast.info({
+              summary: "Votre demande est en cours de traitement"
+            })
+          },
+          err => {
+            console.log(err);
+            this.toast.error({
+              detail: "Error msg",
+              summary: "verifier votre formulaire"
+            });
 
-        }
+          }
 
-      )
+        )
+      }
     }
+
+
   }
 
 
@@ -169,6 +178,13 @@ export class AjouteroffreComponent implements OnInit {
 
   ngOnInit(): void {
     // this.service.loginRequired()
+    this.userType = localStorage.getItem("User")
+    if (this.userType == "formateur") {
+      this.router.navigate(["/home"]);
+      this.toast.info({
+        summary: "Vous ne pouvez pas accéder à cette page"
+      })
+    }
   }
 
 }

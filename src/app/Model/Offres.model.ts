@@ -12,7 +12,7 @@ export class Offres {
         public nbrPersonnes?: number,
         public genre?: string,
         public langue?: string,
-        public dateExpir?: string,
+        public dateExpir?: Date,
         public datePub?: string,
         public niveau?: string,
         public logo?: string,

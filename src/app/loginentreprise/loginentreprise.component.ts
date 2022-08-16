@@ -68,6 +68,8 @@ export class LoginentrepriseComponent implements OnInit {
           }
           else {
             localStorage.setItem("myToken", token);
+            localStorage.setItem("User", "entreprise")
+
             this.router.navigate(["/home"]);
           }
 

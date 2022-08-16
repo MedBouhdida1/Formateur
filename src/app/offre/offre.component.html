@@ -40,9 +40,13 @@
                         </div>
                         <div class="job-inner-right">
                             <ul>
-                                <li>
+                                <li *ngIf="userType=='formateur' ">
                                     <a routerLink="#">Apply</a>
                                 </li>
+                                <li *ngIf="userType==null">
+                                    <a routerLink="#" (click)="apply()">Postuler</a>
+                                </li>
+
                                 <li>
                                     <span>{{offre.type}}</span>
                                 </li>

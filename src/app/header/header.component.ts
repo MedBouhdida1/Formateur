@@ -10,6 +10,7 @@ import { CrudService } from '../service/crud.service';
 export class HeaderComponent implements OnInit {
   user: any;
   token: any;
+  userType: any;
   constructor(
     private router: Router,
     private service: CrudService
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.user)
     this.token = localStorage.getItem("myToken")
-    console.log(this.token)
+    this.userType = localStorage.getItem("User")
   }
 
 

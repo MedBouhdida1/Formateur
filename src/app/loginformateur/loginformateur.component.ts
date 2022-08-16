@@ -57,6 +57,7 @@ export class LoginformateurComponent implements OnInit {
           console.log(res);
           let token = res.token;
           localStorage.setItem("myToken", token);
+          localStorage.setItem("User", "formateur")
           this.router.navigate(["/home"]);
         },
         err => {

@@ -73,7 +73,10 @@ export class RegisterformateurComponent implements OnInit {
         res => {
           console.log(res);
 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/loginformateur']);
+          this.toast.info({
+            summary: "Votre compte a été créé avec succès"
+          })
         },
         err => {
           console.log(err);

@@ -103,5 +103,12 @@ export class CrudService {
         const URL = `${this.apiUrl + "/entreprise"}/${id}`
         return this.http.put<Entreprise>(URL, entreprise, httpOption);
     }
+    updateFormateur(id: number, formateur: Formateur): Observable<Formateur> {
+        const URL = `${this.apiUrl + "/formateur"}/${id}`
+        return this.http.put<Formateur>(URL, formateur, httpOption);
+    }
+    public getFormateurById(id: number): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}/formateur/${id}`)
+    }
 
 }

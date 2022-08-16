@@ -33,7 +33,7 @@
                                     <a href="favourite-job.html" class="nav-link">Vos offres</a>
                                 </li>
 
-                                <li class="nav-item">
+                                <li class="nav-item" *ngIf="userType=='entreprise'">
                                     <a routerLink="/ajouteroffre" class="nav-link">Ajouter un offre</a>
                                 </li>
                             </ul>
@@ -61,10 +61,16 @@
 
                                 <a routerLink=" #" class="nav-link dropdown-toggle  text-primary"> <img
                                         class="img-profile rounded-circle" [src]="user.logo" height="30px"
-                                        *ngIf="user.logo;else img">{{user.nom}} <i class="icofont-simple-down"></i></a>
+                                        *ngIf="user.logo;else noimg">{{user.nom}} <i
+                                        class="icofont-simple-down"></i></a>
+                                <ng-template #noimg>
+                                    <img *ngIf="token==null;else img"
+                                        src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
+                                        height="40px" width="40px" alt="">
+                                </ng-template>
                                 <ng-template #img>
-                                    <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
-                                        width="80px" height="70px" alt="">
+                                    <img class="img-profile rounded-circle" [src]="user.photo" height="30px">
+
                                 </ng-template>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">

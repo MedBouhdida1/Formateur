@@ -101,6 +101,7 @@ img {
   margin-bottom: 70px;
 }
 
+
 .contact-wrap .form-group label {
   font-size: 16px;
   color: #7f7e7e !important;
@@ -2030,6 +2031,10 @@ footer {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+footer .container {
+  padding-top: 100px;
 }
 
 .footer-item {
