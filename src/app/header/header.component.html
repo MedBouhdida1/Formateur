@@ -64,7 +64,7 @@
                                         *ngIf="user.logo;else noimg">{{user.nom}} <i
                                         class="icofont-simple-down"></i></a>
                                 <ng-template #noimg>
-                                    <img *ngIf="token==null;else img"
+                                    <img *ngIf="!user.logo && !user.photo;else img"
                                         src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
                                         height="40px" width="40px" alt="">
                                 </ng-template>
