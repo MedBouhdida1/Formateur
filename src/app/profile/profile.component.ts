@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Entreprise } from '../Model/Entreprise.model';
+import { Formateur } from '../Model/Formateur.model';
 import { CrudService } from '../service/crud.service';
 
 @Component({
@@ -16,7 +17,9 @@ export class ProfileComponent implements OnInit {
   imagePath: any
   userFile: any
   id: any;
-  currentUser = new Entreprise()
+  currentEntreprise = new Entreprise()
+  currentFormateur = new Formateur()
+  currentToken: any
   constructor(
     private service: CrudService,
     private router: Router,
@@ -43,27 +46,51 @@ export class ProfileComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = (_event) => {
         this.imgURL = reader.result;
-        this.currentUser.logo = this.imgURL;
+        if (this.currentToken == "entreprise") {
+          this.currentEntreprise.logo = this.imgURL;
+        }
+        else {
+          this.currentFormateur.photo = this.imgURL;
+        }
       };
     }
   }
   modifierEntreprise() {
-    this.service.updateEntreprise(this.id, this.currentUser).subscribe(entreprise => {
-      this.router.navigate(["/home"]).then(() => {
-        this.toast.info({
-          summary: "Votre profil a été mis à jour avec succès"
-        });
-
+    this.service.updateEntreprise(this.id, this.currentEntreprise).subscribe(entreprise => {
+      this.service.loginentreprise(this.currentEntreprise).subscribe(res => {
+        let token = res.token;
+        localStorage.setItem("myToken", token)
+        window.location.reload()
       })
+      this.router.navigate(["/home"])
+    })
+  }
+  modifierFormateur() {
+    this.service.updateFormateur(this.id, this.currentFormateur).subscribe(formateur => {
+      this.service.loginformateur(this.currentFormateur).subscribe(res => {
+        let token = res.token;
+        localStorage.setItem("myToken", token)
+        window.location.reload()
+      })
+      this.router.navigate(["/home"])
     })
   }
   ngOnInit(): void {
     this.id = this.service.userDetail().id;
-    this.service.getEntrepriseById(this.id).subscribe(data => {
-      this.currentUser = data;
-      console.log(this.currentUser)
+    this.currentToken = localStorage.getItem("User")
+    if (this.currentToken == "entreprise") {
+      this.service.getEntrepriseById(this.id).subscribe(data => {
+        this.currentEntreprise = data;
+        console.log(this.currentEntreprise)
+      })
+    }
+    else {
+      this.service.getFormateurById(this.id).subscribe(data => {
+        this.currentFormateur = data;
 
-    })
+      })
+    }
+
 
   }
 
