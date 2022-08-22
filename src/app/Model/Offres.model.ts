@@ -1,3 +1,5 @@
+import { Entreprise } from "./Entreprise.model";
+
 export class Offres {
 
     constructor(
@@ -12,10 +14,13 @@ export class Offres {
         public nbrPersonnes?: number,
         public genre?: string,
         public langue?: string,
-        public dateExpir?: Date,
+        public dateExpir?: string,
         public datePub?: string,
         public niveau?: string,
         public logo?: string,
+        public requirements?: String,
+        public experience?: String,
+        public entreprise?: Entreprise,
     ) {
 
     }

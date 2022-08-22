@@ -51,12 +51,13 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Localisation</label>
-                            <input type="text" class="form-control"
-                                placeholder="210-27 Quadra, Market Street, Victoria Canada"
-                                formControlName="localisation">
-                            <div *ngIf="localisation?.touched && localisation?.invalid">
-                                <small class="text-danger" *ngIf="localisation?.errors?.['required']">localisation
+                            <label>Experience d'annees</label>
+                            <div class="job-category-area">
+                                <input type="number" class="form-control" placeholder="Amazon.com"
+                                    formControlName="experience">
+                            </div>
+                            <div *ngIf="experience?.touched && experience?.invalid">
+                                <small class="text-danger" *ngIf="experience?.errors?.['required']">experience
                                     est obligatoire</small>
 
                             </div>
@@ -160,6 +161,46 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Localisation</label>
+                            <input type="text" class="form-control"
+                                placeholder="210-27 Quadra, Market Street, Victoria Canada"
+                                formControlName="localisation">
+                            <div *ngIf="localisation?.touched && localisation?.invalid">
+                                <small class="text-danger" *ngIf="localisation?.errors?.['required']">localisation
+                                    est obligatoire</small>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Compétences requises</label>
+                            <ul *ngIf="listRequirement">
+                                <li *ngFor="let rq of listRequirement" style="color: #7f7e7e">
+                                    {{rq}}
+                                </li>
+
+                            </ul>
+                            <input type="text" class="form-control" #filterName placeholder="UX/UI Designer"
+                                name="requirement" formControlName="requirement">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="text-left d-flex justify-content-center">
+                            <button type="submit" (click)="addRequirement();filterName.value=''"
+                                class="btn create-ac-btn ">Ajouter
+                                un compétence</button>
+                        </div>
+
+                    </div>
+
 
 
 
@@ -234,7 +275,7 @@
                     </div>
                 </div>
                 <div class="text-left d-flex justify-content-center">
-                    <button type="submit" (click)="addOffre()" class="btn create-ac-btn ">Ajouter</button>
+                    <button type="submit" (click)="addOffre()" class="btn create-ac-btn ">Ajouter l'offre</button>
                 </div>
             </form>
         </div>

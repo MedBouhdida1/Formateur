@@ -110,5 +110,16 @@ export class CrudService {
     public getFormateurById(id: number): Observable<any> {
         return this.http.get<any>(`${this.apiUrl}/formateur/${id}`)
     }
+    public getOffreById(id: number): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}/offres/${id}`)
+    }
+    deleteOffre(id: number) {
+        const URL = `${this.apiUrl + "/offres"}/${id}`
+        return this.http.delete(URL, httpOption)
+    }
+    updateOffre(id: number, offre: Offres): Observable<Offres> {
+        const URL = `${this.apiUrl + "/offres"}/${id}`
+        return this.http.put<Offres>(URL, offre, httpOption);
+    }
 
 }

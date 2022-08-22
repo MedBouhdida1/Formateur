@@ -1,9 +1,8 @@
 <app-header></app-header>
-
 <section class="job-area job-area-two pt-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6" *ngFor="let offre of listeOffres">
+            <div class="col-lg-6 " *ngFor="let offre of listeOffres">
                 <div class="job-item">
                     <img *ngIf="offre.logo;else img" [src]="offre.logo" height="80px" width="70px" alt="Job">
                     <ng-template #img>
@@ -37,10 +36,8 @@
                         </div>
                         <div class="job-inner-right">
                             <ul>
-                                <li *ngIf="userType=='formateur' ">
-                                    <a routerLink="#">Apply</a>
-                                </li>
-                                <li *ngIf="userType==null">
+
+                                <li *ngIf="userType==null ||userType=='formateur'  ">
                                     <a routerLink="#" (click)="apply()">Postuler</a>
                                 </li>
 
@@ -49,7 +46,15 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="common-btn d-flex justify-content-center">
+                            <a routerLink="#" class="btn btn-sm btn-warning">Modifier
+                                <i class="icofont-edit"></i> </a>
+                            <a class="btn btn-sm btn-danger" (click)="supprimerOffre(offre)">Delete
+                                <i class="icofont-ui-delete"></i> </a>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
 
@@ -62,4 +67,8 @@
         </div>
     </div>
 </section>
+
+
+
+
 <app-footer></app-footer>

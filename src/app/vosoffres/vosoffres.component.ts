@@ -5,11 +5,12 @@ import { Offres } from '../Model/Offres.model';
 import { CrudService } from '../service/crud.service';
 
 @Component({
-  selector: 'app-offre',
-  templateUrl: './offre.component.html',
-  styleUrls: ['./offre.component.css']
+  selector: 'app-vosoffres',
+  templateUrl: './vosoffres.component.html',
+  styleUrls: ['./vosoffres.component.css']
 })
-export class OffreComponent implements OnInit {
+export class VosoffresComponent implements OnInit {
+
   listeOffres: Offres[] = []
   numberOffres: number = 0
   userType: any;
@@ -21,7 +22,14 @@ export class OffreComponent implements OnInit {
     private toast: NgToastService
 
   ) { }
+  supprimerOffre(offre: Offres) {
+    if (confirm("Voulez vous supprimer cette Offre ?")) {
+      this.service.deleteOffre(offre.id!).subscribe(() => {
+        window.location.reload();
+      });
 
+    }
+  }
 
   //add apply
   apply() {

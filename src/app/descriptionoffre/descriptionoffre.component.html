@@ -1,0 +1,80 @@
+<app-header></app-header>
+<div class="job-details-area pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="job-details-item">
+                    <div class="job-description">
+                        <h2>Description de l'offre</h2>
+                        <p>{{currentOffre.description}}</p>
+
+                    </div>
+                    <div class="job-knowledge">
+                        <h2>compétences requises</h2>
+                        <ul>
+                            <li *ngFor="let rq of listRequirement">
+                                <i class="icofont-hand-drawn-right"></i>
+                                {{rq}}
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="text-center">
+                        <a class="job-details-btn" href="create-account.html">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="job-details-item">
+                    <div class="job-overview">
+                        <h3>Aperçu</h3>
+                        <ul>
+                            <li>
+                                <i class="icofont-dollar"></i>
+                                <p>Salaire</p>
+                                <span>{{currentOffre.salaire}}</span>
+                            </li>
+                            <li>
+                                <i class="icofont-users-alt-3"></i>
+                                <p>Genre</p>
+                                <span>{{currentOffre.genre}}</span>
+                            </li>
+                            <li>
+                                <i class="icofont-badge"></i>
+                                <p>Experience</p>
+                                <span>{{currentOffre.experience}} Years</span>
+                            </li>
+                            <li>
+                                <i class="icofont-graduate"></i>
+                                <p>Niveau</p>
+                                <span>{{currentOffre.niveau}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="job-overview job-company">
+                        <h3>Entreprise</h3>
+                        <ul>
+                            <li>
+                                <i class="icofont-location-pin"></i>
+                                <span>{{currentOffre.localisation}}</span>
+                            </li>
+                            <li>
+                                <i class="icofont-ui-call"></i>
+                                <a href="tel:+07554332322">Call : +07 554 332 322</a>
+                            </li>
+                            <li>
+                                <i class="icofont-ui-email"></i>
+                                <a
+                                    href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#c4aca1a8a8ab84a3a5a6a8a1eaa7aba9"><span
+                                        class="__cf_email__"
+                                        data-cfemail="325a575e5e5d725553505e571c515d5f">[email&#160;protected]</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

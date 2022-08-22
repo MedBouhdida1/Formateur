@@ -12,6 +12,8 @@ import { CrudService } from '../service/crud.service';
 })
 export class ContactComponent implements OnInit {
   addContactForm: FormGroup
+  now = new Date();
+
 
   constructor(
     private service: CrudService,
@@ -49,7 +51,7 @@ export class ContactComponent implements OnInit {
     let data = this.addContactForm.value;
     console.log(data);
     let contact = new Contact(
-      undefined, data.nom, data.email, data.sujet, data.msg
+      undefined, data.nom, data.email, data.sujet, data.msg, this.now.toISOString().slice(0, 10)
     );
     console.log(contact);
 

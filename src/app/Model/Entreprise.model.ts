@@ -1,3 +1,5 @@
+import { Offres } from "./Offres.model";
+
 export class Entreprise {
 
     constructor(
@@ -6,7 +8,10 @@ export class Entreprise {
         public mdp?: string,
         public email?: string,
         public etat?: number,
-        public logo?: String | null
+        public logo?: String | null,
+        public date?: String,
+        public numeroTel?: String,
+        public offre?: Offres[]
     ) {
     }
 }

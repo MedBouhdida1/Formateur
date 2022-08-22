@@ -10,6 +10,7 @@ import { CrudService } from '../service/crud.service';
   styleUrls: ['./registerentreprise.component.css']
 })
 export class RegisterentrepriseComponent implements OnInit {
+  now = new Date();
 
   registerForm: FormGroup
   constructor(
@@ -48,7 +49,7 @@ export class RegisterentrepriseComponent implements OnInit {
     let data = this.registerForm.value;
     console.log(data);
     let entreprise = new Entreprise(
-      undefined, data.nom, data.mdp, data.email, undefined);
+      undefined, data.nom, data.mdp, data.email, undefined, undefined, this.now.toISOString().slice(0, 10));
     console.log(entreprise);
 
     if (data.nom == 0 || data.email == 0 || data.mdp == 0) {

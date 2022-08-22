@@ -18,6 +18,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DescriptionoffreComponent } from './descriptionoffre/descriptionoffre.component';
+import { VosoffresComponent } from './vosoffres/vosoffres.component';
+import { UpdateoffreComponent } from './updateoffre/updateoffre.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { ProfileComponent } from './profile/profile.component';
     HeaderComponent,
     FooterComponent,
     ContactComponent,
-    ProfileComponent
+    ProfileComponent,
+    DescriptionoffreComponent,
+    VosoffresComponent,
+    UpdateoffreComponent
   ],
   imports: [
     BrowserModule,

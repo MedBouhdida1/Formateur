@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { Entreprise } from '../Model/Entreprise.model';
 import { Offres } from '../Model/Offres.model';
 import { CrudService } from '../service/crud.service';
 
@@ -18,6 +19,8 @@ export class AjouteroffreComponent implements OnInit {
   addOffreForm: FormGroup
   now = new Date();
   userType: any;
+  listRequirement: String[] = [];
+  currentEntreprise = new Entreprise()
   constructor(
     private service: CrudService,
     private router: Router,
@@ -79,6 +82,14 @@ export class AjouteroffreComponent implements OnInit {
         Validators.required,
 
       ]),
+      requirement: new FormControl('', [
+        Validators.required,
+
+      ]),
+      experience: new FormControl('', [
+        Validators.required,
+
+      ]),
 
 
 
@@ -97,7 +108,9 @@ export class AjouteroffreComponent implements OnInit {
   get dateExpir() { return this.addOffreForm.get('dateExpir') }
   get datePub() { return this.addOffreForm.get('datePub') }
   get niveau() { return this.addOffreForm.get('niveau') }
+  get experience() { return this.addOffreForm.get('experience') }
   get logo() { return this.addOffreForm.get('logo') }
+  get requirement() { return this.addOffreForm.get('requirement') }
   onSelectFile(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -107,6 +120,7 @@ export class AjouteroffreComponent implements OnInit {
       var mimeType = event.target.files[0].type;
       if (mimeType.match(/image\/*/) == null) {
         this.message = 'Only images are supported.';
+        console.log(this.message)
         return;
       }
 
@@ -119,19 +133,30 @@ export class AjouteroffreComponent implements OnInit {
       };
     }
   }
+  addRequirement() {
+    let data = this.addOffreForm.value;
+    if (data.requirement != '') {
+      this.listRequirement.push(data.requirement);
+    }
+    //Reset input
+    console.log(this.listRequirement)
+    data.requirement = '';
+  }
   addOffre() {
     let data = this.addOffreForm.value;
     console.log(data);
-
+    data.requirement = this.listRequirement.toString()
+    console.log(data.requirement)
 
     let offre = new Offres(
       undefined, data.titre, data.site, data.salaire, data.localisation,
       data.type, undefined, data.description, data.nbrPersonnes,
-      data.genre, data.langue, data.dateExpir, this.now.toISOString().slice(0, 10), data.niveau, this.imgURL);
+      data.genre, data.langue, data.dateExpir, this.now.toISOString().slice(0, 10), data.niveau, this.imgURL, data.requirement, data.experience, this.currentEntreprise);
+
 
     console.log(offre);
     if (data.titre == 0 || data.description == 0 || data.salaire == 0 || data.localisation == 0 || data.type == 0
-      || data.nbrPersonnes == 0 || data.genre == 0 || data.langue == 0 || data.dateExpir == 0 || data.niveau == 0) {
+      || data.nbrPersonnes == 0 || data.genre == 0 || data.langue == 0 || data.dateExpir == 0 || data.niveau == 0 || data.experience == 0) {
       this.toast.info({
         detail: "Erreur msg !!",
         summary: "les champs sont obligatoires"
@@ -178,6 +203,7 @@ export class AjouteroffreComponent implements OnInit {
 
   ngOnInit(): void {
     // this.service.loginRequired()
+    this.currentEntreprise = this.service.userDetail()
     this.userType = localStorage.getItem("User")
     if (this.userType == "formateur") {
       this.router.navigate(["/home"]);
