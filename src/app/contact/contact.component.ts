@@ -11,51 +11,33 @@ import { CrudService } from '../service/crud.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  addContactForm: FormGroup
   now = new Date();
-
-
+  currentUser: any
+  contact = new Contact()
+  userType: any
   constructor(
     private service: CrudService,
     private router: Router,
-    private fb: FormBuilder,
     private toast: NgToastService
   ) {
-    let formControls = {
 
 
-      nom: new FormControl('', [
-        Validators.required,
 
-      ]),
-      email: new FormControl('', [
-        Validators.required,
-
-      ]),
-      sujet: new FormControl('', [
-        Validators.required,
-
-      ]),
-      msg: new FormControl('', [
-        Validators.required,
-
-      ]),
-    }
-    this.addContactForm = this.fb.group(formControls)
   }
-  get nom() { return this.addContactForm.get('nom') }
-  get email() { return this.addContactForm.get('email') }
-  get sujet() { return this.addContactForm.get('sujet') }
-  get msg() { return this.addContactForm.get('msg') }
+
   addContact() {
-    let data = this.addContactForm.value;
-    console.log(data);
+    if (this.userType) {
+      this.contact.nom = this.currentUser.nom
+      this.contact.email = this.currentUser.email
+    }
+
+    let date = this.now.toLocaleDateString()
     let contact = new Contact(
-      undefined, data.nom, data.email, data.sujet, data.msg, this.now.toISOString().slice(0, 10)
+      undefined, this.contact.nom, this.contact.email, this.contact.sujet, this.contact.msg, this.now.toLocaleString()
     );
     console.log(contact);
 
-    if (data.nom == 0 || data.email == 0 || data.sujet == 0 || data.msg == 0) {
+    if (this.contact.nom == null || this.contact.email == null || this.contact.sujet == null || this.contact.msg == null) {
       this.toast.info({
         detail: "Erreur msg !!",
         summary: "les champs sont obligatoires"
@@ -64,9 +46,6 @@ export class ContactComponent implements OnInit {
       );
     }
     else {
-
-
-
       this.service.addContact(contact).subscribe(
 
         res => {
@@ -90,6 +69,16 @@ export class ContactComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.userType = localStorage.getItem("User")
+    if (this.userType == "entreprise")
+      this.service.getEntrepriseById(this.service.userDetail().id).subscribe(entreprise => {
+        this.currentUser = entreprise
+      })
+    if (this.userType == "formateur") {
+      this.service.getFormateurById(this.service.userDetail().id).subscribe(formateur => {
+        this.currentUser = formateur
+      })
+    }
   }
 
 }

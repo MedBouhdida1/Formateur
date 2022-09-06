@@ -1,0 +1,31 @@
+.nooffer p {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 50px;
+    color: #646464;
+}
+
+.ngx-pagination {
+    padding-left: 0px !important;
+}
+
+.ngx-pagination .current,
+.btn-info {
+    background: #49C858 !important;
+    border: transparent !important;
+    border-radius: 20px !important;
+}
+
+.ngx-pagination .current:hover {
+    background: #49C858 !important;
+    border-radius: 20px !important;
+    border: transparent !important;
+}
+
+.col-lg-4 {
+    width: 100% !important;
+}
+
+.banner-form-area {
+    margin: 30px 20px 30px 20px;
+}

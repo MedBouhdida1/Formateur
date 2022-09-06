@@ -7,7 +7,8 @@ export class Formateur {
         public numeroTel?: string | null,
         public email?: string,
         public mdp?: string,
-        public photo?: string
+        public photo?: string,
+        public cv?: Blob
     ) {
 
     }

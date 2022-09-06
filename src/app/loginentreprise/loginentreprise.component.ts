@@ -45,7 +45,7 @@ export class LoginentrepriseComponent implements OnInit {
 
   loginEntreprise() {
     let data = this.loginForm.value;
-    let entreprise = new Entreprise(null, null, data.mdp, data.email, undefined);
+    let entreprise = new Entreprise(undefined, undefined, data.mdp, data.email, undefined);
 
     if (data.email == 0 || data.mdp == 0) {
       this.toast.info({
@@ -61,18 +61,16 @@ export class LoginentrepriseComponent implements OnInit {
           console.log(res);
           let token = res.token;
           let decodeToken = this.helper.decodeToken(token);
-          if (decodeToken.data.etat == 0) {
-            this.toast.info({
-              summary: "Votre demande de creation de compte est en cours de traitement"
-            })
-          }
-          else {
-            localStorage.setItem("myToken", token);
-            localStorage.setItem("User", "entreprise")
+          // if (decodeToken.data.etat == 0) {
+          //   this.toast.info({
+          //     summary: "Votre demande de creation de compte est en cours de traitement"
+          //   })
+          // }
+          // else {
+          localStorage.setItem("myToken", token);
+          localStorage.setItem("User", "entreprise")
 
-            this.router.navigate(["/home"]);
-          }
-
+          this.router.navigate(["/home"]);
         },
         err => {
           console.log(err);

@@ -1,1 +1,205 @@
-<p>updateoffre works!</p>
+<app-header></app-header>
+
+
+<div class="post-job-area pt-100">
+    <div class="container">
+        <div class="post-job-item">
+            <form (ngSubmit)="modifierOffre()">
+                <div class="post-job-heading">
+                    <h2>Ajouter un offre</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Titre d'emploi</label>
+                            <input type="text" class="form-control" placeholder="UX/UI Designer" name="titre"
+                                [(ngModel)]="currentOffre.titre">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Nombres de personnes</label>
+                            <input type="number" class="form-control" placeholder="UX/UI Designer" name="nbrPersonnes"
+                                [(ngModel)]="currentOffre.nbrPersonnes">
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Experience d'annees</label>
+                            <div class="job-category-area">
+                                <input type="number" class="form-control" placeholder="Amazon.com" name="experience"
+                                    [(ngModel)]="currentOffre.experience">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Langue</label>
+                            <input type="text" class="form-control" placeholder="UX/UI Designer" name="langue"
+                                [(ngModel)]="currentOffre.langue">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Niveau</label>
+                            <div class="job-category-area">
+                                <input type="text" class="form-control" placeholder="Amazon.com" name="niveau"
+                                    [(ngModel)]="currentOffre.niveau">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Date de publication</label>
+                            <input type="text" class="form-control" name="datePub" [(ngModel)]="currentOffre.datePub"
+                                readonly>
+
+                        </div>
+
+                    </div>
+                    <div class=" col-lg-6">
+                        <div class="form-group">
+                            <label>Date d'expiration</label>
+                            <div class="job-category-area">
+                                <input type="date" class="form-control" placeholder="Amazon.com" name="dateExpir"
+                                    [(ngModel)]="currentOffre.dateExpir">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="job-currency-area">
+                                <label>Salaire</label>
+                                <input type="text" class="form-control" placeholder="Winbrans.com" name="salaire"
+                                    [(ngModel)]="currentOffre.salaire">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option>TND</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Compétences requises</label>
+                            <table *ngIf="listRequirement">
+                                <tr *ngFor="let rq of listRequirement">
+                                    <td style="color: #7f7e7e">-{{rq}}</td>
+                                    <td><a class="btn btn-sm btn-danger" (click)="deleteRequirement(rq)">
+                                            <i class="icofont-ui-delete"></i> </a></td>
+                                </tr>
+                            </table>
+
+                            <input type="text" class="form-control" #filterName placeholder="UX/UI Designer"
+                                name="requirement" [(ngModel)]="currentOffre.requirements">
+
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="text-left d-flex justify-content-center">
+                                <button type="button" (click)="addRequirement();filterName.value=''"
+                                    class="btn create-ac-btn ">Ajouter
+                                    un compétence</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class=" col-lg-12">
+                        <div class="form-group">
+                            <div class="job-type-area">
+                                <span>Type d'emploi</span>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" id="inlineRadio1"
+                                        value="Plein temps" [(ngModel)]="currentOffre.type">
+                                    <label class="form-check-label" for="inlineRadio1">Plein temps</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" id="inlineRadio2"
+                                        value="Temps partiel" [(ngModel)]="currentOffre.type">
+                                    <label class="form-check-label" for="inlineRadio2">Temps partiel</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" id="inlineRadio3"
+                                        value="Stage" [(ngModel)]="currentOffre.type">
+                                    <label class="form-check-label" for="inlineRadio3">Stage</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <div class="job-type-area">
+                                <span>Genre</span>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="genre" id="inlineRadio1"
+                                        value="Mâle" [(ngModel)]="currentOffre.genre">
+                                    <label class="form-check-label" for="inlineRadio1">Mâle</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="genre" id="inlineRadio2"
+                                        value="Femelle" [(ngModel)]="currentOffre.genre">
+                                    <label class="form-check-label" for="inlineRadio2">Femelle</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Description d'emploi</label>
+                            <textarea id="your_message" rows="8" class="form-control" name="description"
+                                [(ngModel)]="currentOffre.description"></textarea>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="text-left d-flex justify-content-center">
+                    <button type="submit" (click)="modifierOffre()" class="btn create-ac-btn ">Modifier
+                        l'offre</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

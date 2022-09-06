@@ -1,16 +1,9 @@
 <app-header></app-header>
 
+
+
 <section class="job-area job-area-two pt-100">
     <div class="container job-item">
-
-        <!-- <div *ngIf="nbrOffres!=0" class=" sorting-menu">
-            <ul>
-                <li class="filter" (click)="Tous()" data-filter=".web">Tous</li>
-                <li class="filter" (click)="StageOffers()" data-filter=".branding">Stage</li>
-                <li class="filter" (click)="pleinTempsOffers()" data-filter=".ux">Plein Temps</li>
-                <li class="filter" (click)="TempsPartielOffers()" data-filter=".wp">Temps Partiel</li>
-            </ul>
-        </div> -->
         <div *ngIf="nbrOffres!=0" class="banner-form-area">
             <form>
                 <div class="row">
@@ -29,15 +22,13 @@
             </form>
         </div>
         <div class="container">
-
             <div class="row">
                 <div *ngIf="nbrOffres==0" class="nooffer d-flex justify-content-center">
-                    <p>Aucune offre disponible!</p>
+                    Aucune offre disponible pour cette entreprise
                 </div>
-                <div class="col-lg-6"
+                <div class="col-lg-6 "
                     *ngFor="let offre of listeOffres | paginate:{itemsPerPage:4,currentPage:page,totalItems:nbrOffres}">
                     <div class="job-item">
-
                         <!-- <img *ngIf="offre.logo;else img" [src]="offre.logo" height="80px" width="70px" alt="Job"> -->
                         <!-- <ng-template #img> -->
                         <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
@@ -70,7 +61,8 @@
                             </div>
                             <div class="job-inner-right">
                                 <ul>
-                                    <li *ngIf="userType=='formateur' ||userType==null">
+
+                                    <li *ngIf="userType==null ||userType=='formateur'  ">
                                         <a routerLink="#" (click)="apply()">Postuler</a>
                                     </li>
 
@@ -79,20 +71,19 @@
                                     </li>
                                 </ul>
                             </div>
+
                         </div>
+
                     </div>
                 </div>
-
                 <pagination-controls (pageChange)="page=$event" class="my_pagination d-flex justify-content-center">
                 </pagination-controls>
-                <div class="common-btn d-flex justify-content-center" *ngIf="userType=='entreprise'">
-                    <a class="login-btn" routerLink="/ajouteroffre">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Ajouter Offre
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>
 </section>
+
+
+
 <app-footer></app-footer>

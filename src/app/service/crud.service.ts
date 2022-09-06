@@ -121,5 +121,8 @@ export class CrudService {
         const URL = `${this.apiUrl + "/offres"}/${id}`
         return this.http.put<Offres>(URL, offre, httpOption);
     }
+    getEntreprises(): Observable<Entreprise[]> {
+        return this.http.get<Entreprise[]>(this.apiUrl + "/entreprise")
+    }
 
 }

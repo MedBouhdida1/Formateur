@@ -15,17 +15,17 @@
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a routerLink="/home" class="nav-link dropdown-toggle active">Home <i></i></a>
+                            <a routerLink="/home" class="nav-link dropdown-toggle active">Acceuil <i></i></a>
 
                         </li>
                         <li class="nav-item">
-                            <a href="#">Qui Somme Nous <i></i></a>
+                            <a routerLink="/aboutus">Qui somme nous <i></i></a>
 
                         </li>
                         <li class="nav-item">
-                            <a routerLink="#" class="nav-link dropdown-toggle">Offres <i
-                                    class="icofont-simple-down"></i></a>
-                            <ul class="dropdown-menu">
+                            <a routerLink="/offre" class="nav-link dropdown-toggle">Offres <i
+                                    class="icofont-simple-down" *ngIf="userType=='entreprise'"></i></a>
+                            <ul class="dropdown-menu" *ngIf="userType=='entreprise'">
                                 <li class="nav-item">
                                     <a routerLink="/offre" class="nav-link">Liste des offres</a>
                                 </li>
@@ -33,10 +33,14 @@
                                     <a routerLink="/vosoffres" class="nav-link">Vos offres</a>
                                 </li>
 
-                                <li class="nav-item" *ngIf="userType=='entreprise'">
-                                    <a routerLink="/ajouteroffre" class="nav-link">Ajouter un offre</a>
+                                <li class="nav-item">
+                                    <a routerLink="/ajouteroffre" class="nav-link">Ajouter une offre</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/listentreprises">Liste des entreprises <i></i></a>
+
                         </li>
                         <li class="nav-item">
                             <a routerLink="/contact">Contact <i></i></a>
@@ -48,13 +52,14 @@
                     <div *ngIf="token==null;else userDetail" class="common-btn">
                         <a class="login-btn" routerLink="/login">
                             <i class="icofont-plus-square"></i>
-                            Login
+                            S'identifier
                         </a>
                         <a class="sign-up-btn" routerLink="/register">
                             <i class="icofont-user-alt-4"></i>
-                            Sign Up
+                            S'inscrire
                         </a>
                     </div>
+
                     <ng-template #userDetail>
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -69,7 +74,7 @@
                                         height="40px" width="40px" alt="">
                                 </ng-template>
                                 <ng-template #img>
-                                    <img class="img-profile rounded-circle" [src]="user.photo" height="30px">
+                                    <img class="img-profile rounded-circle" [src]="user.photo" height="40px">
 
                                 </ng-template>
                                 <ul class="dropdown-menu">
@@ -85,6 +90,8 @@
                                             Deconnexion
                                         </a>
                                     </li>
+                                    <a [href]="file" download="cv.pdf">Download</a>
+
 
                                 </ul>
 

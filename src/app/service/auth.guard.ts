@@ -18,8 +18,7 @@ export class AuthGuard implements CanActivate {
     if (!isAuthenticated) {
       this.router.navigate(['/login']);
       this.toast.warning({
-        detail: "Erreur msg !!",
-        summary: "You have to login to access this page"
+        summary: "Vous devez connecter pour acceder a cette page"
       });
     }
     return isAuthenticated;

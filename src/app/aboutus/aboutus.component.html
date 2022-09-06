@@ -1,0 +1,84 @@
+<app-header></app-header>
+
+<div style="margin-top: 90px;">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <img src="assets/img/Glassdoor-About-Us-Hero.jpg" alt="" width="100%">
+
+
+        </div>
+    </div>
+</div>
+<section class="faq-area pt-100">
+    <div class="container">
+
+        <div class="row faq-wrap">
+            <div class="col-lg-12">
+                <div class="faq-head">
+                    <h2>Qui Sommes Nous</h2>
+                </div>
+                <div class="faq-item">
+                    <ul [ngClass]="displayonclick">
+                        <li>
+                            <a (click)="onSubmit()" [ngClass]="changestyle">À propos de "JobHunts"</a>
+                            <p>
+                                "JobHunts" est une solution globale d'emploi en ligne pour les personnes à la recherche
+                                d'un emploi et les employeurs qui ont besoin de personnes formidables.
+                            </p>
+                            <p> L'innovation est au cœur de notre succès et de notre avenir, nous changeons la façon
+                                dont les gens envisagent le travail et nous les aidons activement à améliorer leur vie
+                                et les performances de leur personnel grâce à de nouvelles technologies, outils et
+                                pratiques..</p>
+                        </li>
+                        <li>
+                            <a (click)="onSubmit()" [ngClass]="changestyle">Notre mission</a>
+
+                            <p>
+                                Nous créons et fournissons les meilleurs médias, technologies et plateformes de
+                                recrutement pour connecter les emplois et les personnes, nous nous efforçons chaque
+                                jour d'aider nos clients à embaucher et d'aider les gens à trouver un emploi..</p>
+                        </li>
+
+                        <li class="wow fadeInUp" data-wow-delay=".4s">
+                            <a (click)="onSubmit()" [ngClass]="changestyle"> Pourquoi "JobHunts"</a>
+                            <p>"JobHunts" avec sa technologie de pointe, fournit des profils pertinents aux employeurs
+                                et
+                                des emplois pertinents aux demandeurs d'emploi dans tous les secteurs verticaux, niveaux
+                                d'expérience et zones géographiques.
+
+                            </p>
+                            <p> Nous aidons les employeurs à trouver non seulement les meilleurs candidats de qualité,
+                                mais plus d'entre eux. Pour rationaliser le processus afin que vous puissiez économiser
+                                du temps et de l'argent. Et pour vous aider à prendre des décisions plus intelligentes
+                                pour améliorer votre retour sur investissement. Fondamentalement, nous voulons vous
+                                donner la possibilité d'embaucher comme personne d'autre ne le peut.</p>
+                        </li>
+                        <li class="wow fadeInUp" data-wow-delay=".5s">
+                            <a (click)="onSubmit()" [ngClass]="changestyle">Avantages de "JobHunts"</a>
+                            <p>Le processus de recherche d'emploi et de recrutement est généralement fastidieux, mais
+                                avec notre site Web, il est devenu plus pratique et plus simple de s'inscrire en tant
+                                que recruteur ou demandeur d'emploi sur notre site Web. Notre site Web a une
+                                fonctionnalité où vous pouvez télécharger votre CV sur le site et obtenir plusieurs
+                                emplois en un seul clic.</p>
+                        </li>
+                        <li class="wow fadeInUp" data-wow-delay=".6s">
+                            <a (click)="onSubmit()" [ngClass]="changestyle">Une multitude de recherches d'emploi </a>
+                            <p>Nous fournissons une vaste base de données de demandeurs d'emploi et de fournisseurs sur
+                                notre meilleur site Web en ligne. Les recherches d'emploi sont divisées en trois
+                                catégories principalement par lieu, par industrie et par type de l'emploi. Chaque
+                                individu
+                                avec n'importe quel diplôme, qu'il s'agisse de marketing, d'ingénierie, de comptabilité
+                                financière et de sciences, peut postuler à ce site Web où que vous soyez, nous sommes à
+                                un seul clic.</p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<app-footer></app-footer>

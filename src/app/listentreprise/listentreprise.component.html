@@ -1,0 +1,33 @@
+<app-header></app-header>
+
+
+<section class="companies-area companies-area-two pt-100">
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let ent of listEntreprises" class="col-sm-6 col-lg-3">
+                <div class="companies-item wow fadeInUp" data-wow-delay=".3s">
+                    <img *ngIf="ent.logo;else noimg" [src]="ent.logo" alt="Companies">
+                    <ng-template #noimg>
+                        <img
+                            src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg">
+                    </ng-template>
+                    <h3>
+                        <a href="https://{{ent.site}}" target="_blank">{{ent.site}}</a>
+                    </h3>
+                    <p>
+                        <i class="icofont-location-pin"></i>
+                        {{ent.localisation}}
+                    </p>
+                    <a *ngIf="id==ent.id && userType=='entreprise';else rr" class="companies-btn"
+                        routerLink="/vosoffres">Offres</a>
+                    <ng-template #rr> <a class="companies-btn" routerLink="/offrebyent/{{ent.id}}">Offres</a>
+                    </ng-template>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<app-footer></app-footer>

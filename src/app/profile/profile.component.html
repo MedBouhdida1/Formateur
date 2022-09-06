@@ -46,11 +46,46 @@
                                         <input type="text" class="form-control" placeholder="Email" name="email"
                                             [(ngModel)]="currentEntreprise.email">
                                     </div>
+
                                     <div class="form-group">
                                         <label>Numero Telephone</label>
                                         <input type="text" class="form-control" placeholder="numeroTel" name="numeroTel"
                                             [(ngModel)]="currentEntreprise.numeroTel">
                                     </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="create-photo-item">
+                                <div class="create-photo-right">
+
+                                    <div class="form-group">
+                                        <label>Site Internet</label>
+                                        <input type="text" class="form-control" placeholder="numeroTel" name="site"
+                                            [(ngModel)]="currentEntreprise.site">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="create-photo-item">
+                                <div class="create-photo-right">
+
+                                    <div class="form-group">
+                                        <label>Localisation</label>
+                                        <input type="text" class="form-control" placeholder="numeroTel"
+                                            name="localisation" [(ngModel)]="currentEntreprise.localisation">
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="create-photo-item">
+                                <div class="create-photo-right">
+
                                     <div class="text-right d-flex justify-content-center">
                                         <button type="submit" (click)="modifierEntreprise()"
                                             class="btn create-photo-btn">Modifier</button>
@@ -58,6 +93,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </form>
                 <ng-template #ff>
@@ -74,7 +111,10 @@
                                                     <i class="icofont-photobucket"></i>
                                                     <input type="file" class="form-control-file" accept="image/*"
                                                         (change)="onSelectFile($event)">
-                                                    <img [src]="imgURL" height="200" *ngIf="imgURL">
+                                                    <img [src]="imgURL" height="200" *ngIf="imgURL;else d">
+                                                    <ng-template #d>
+                                                        <img [src]="currentFormateur.photo" height="200">
+                                                    </ng-template>
 
 
                                                 </div>
@@ -96,6 +136,17 @@
                                             <input type="text" class="form-control" placeholder="Email" name="email"
                                                 [(ngModel)]="currentFormateur.email">
                                         </div>
+                                        <div class="form-group">
+                                            <label>Numero Telephone</label>
+                                            <input type="text" class="form-control" placeholder="numeroTel"
+                                                name="numeroTel" [(ngModel)]="currentFormateur.numeroTel">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Curriculum Vitae</label>
+                                            <input type="file" accept="pdf/*" (change)="onSelectCV($event)"
+                                                class="form-control" placeholder="Winbrans.com">
+                                        </div>
+                                        <a [href]="file" download="cv.pdf">Download</a>
                                         <div class="text-right d-flex justify-content-center">
                                             <button type="submit" (click)="modifierFormateur()"
                                                 class="btn create-photo-btn">Modifier</button>

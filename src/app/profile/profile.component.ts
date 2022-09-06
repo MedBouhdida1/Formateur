@@ -1,6 +1,8 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import * as saveAs from 'file-saver';
 import { NgToastService } from 'ng-angular-popup';
 import { Entreprise } from '../Model/Entreprise.model';
 import { Formateur } from '../Model/Formateur.model';
@@ -14,8 +16,12 @@ import { CrudService } from '../service/crud.service';
 export class ProfileComponent implements OnInit {
   message?: String
   imgURL: any
+  CvURL: any
   imagePath: any
+  cvPath: any
   userFile: any
+  userCV: any
+  file: any
   id: any;
   currentEntreprise = new Entreprise()
   currentFormateur = new Formateur()
@@ -23,7 +29,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private service: CrudService,
     private router: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private sanitizer: DomSanitizer
 
 
   ) { }
@@ -56,25 +63,78 @@ export class ProfileComponent implements OnInit {
       };
     }
   }
+  onSelectCV(event: any) {
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.userCV = file;
+
+
+      var mimeType = event.target.files[0].type;
+      if (mimeType.match(/pdf\/*/) == null) {
+        this.message = 'Only images are supported.';
+        console.log(this.message)
+        return;
+      }
+
+      var reader = new FileReader();
+
+      this.cvPath = file;
+      reader.readAsDataURL(file);
+      reader.onload = (_event) => {
+        this.CvURL = reader.result;
+        this.currentFormateur.cv = this.CvURL
+
+        // const blob = new Blob([this.currentFormateur.cv!], { type: 'application/pdf' })
+        // this.file = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+      };
+    }
+  }
+
   modifierEntreprise() {
-    this.service.updateEntreprise(this.id, this.currentEntreprise).subscribe(entreprise => {
-      this.service.loginentreprise(this.currentEntreprise).subscribe(res => {
-        let token = res.token;
-        localStorage.setItem("myToken", token)
-        window.location.reload()
+    if (this.currentEntreprise.nom == null || this.currentEntreprise.email == null || this.currentEntreprise.numeroTel == null ||
+      this.currentEntreprise.site == null || this.currentEntreprise.localisation == null || this.currentEntreprise.logo == null) {
+      this.toast.info({
+        summary: "Tous les champs sont obligatoire"
       })
-      this.router.navigate(["/home"])
-    })
+    }
+    else {
+      this.service.updateEntreprise(this.id, this.currentEntreprise).subscribe(entreprise => {
+        setTimeout(() => {
+          this.router.navigate(["/home"])
+
+          this.toast.success({
+            summary: "Votre compte a ete modifie avec succées"
+          })
+        }, 2000
+        )
+      })
+    }
+
   }
   modifierFormateur() {
-    this.service.updateFormateur(this.id, this.currentFormateur).subscribe(formateur => {
-      this.service.loginformateur(this.currentFormateur).subscribe(res => {
-        let token = res.token;
-        localStorage.setItem("myToken", token)
-        window.location.reload()
+    if (this.currentFormateur.nom == null || this.currentFormateur.email == null || this.currentFormateur.numeroTel == null ||
+      this.currentFormateur.cv == null || this.currentFormateur.photo == null) {
+      this.toast.info({
+        summary: "Tous les champs sont obligatoire"
       })
-      this.router.navigate(["/home"])
-    })
+    }
+    else {
+      this.service.updateFormateur(this.id, this.currentFormateur).subscribe(formateur => {
+
+
+        setTimeout(() => {
+          this.router.navigate(["/home"])
+
+          this.toast.success({
+            summary: "Votre compte a ete modifie avec succées"
+          });
+        }, 1000
+        )
+
+      })
+    }
+
   }
   ngOnInit(): void {
     this.id = this.service.userDetail().id;

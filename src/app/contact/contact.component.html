@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="contact-form-area ptb-100">
     <div class="container">
-        <form id="contactForm" [formGroup]="addContactForm" (ngsubmit)="addContact()">
+        <form id="contactForm" (ngsubmit)="addContact()">
             <div class="post-job-heading text-center">
                 <h2>Contact</h2>
             </div>
@@ -9,27 +9,30 @@
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
                         <label for="">Nom</label>
-                        <input type="text" name="name" id="name" class="form-control" required
-                            data-error="Please enter your name" placeholder="nom" formControlName="nom">
-                        <div class="help-block with-errors"></div>
-                        <div *ngIf="nom?.touched && nom?.invalid">
-                            <small class="text-danger" *ngIf="nom?.errors?.['required']">nom
-                                est obligatoire</small>
 
-                        </div>
+
+                        <input *ngIf="currentUser;else md" type="text" name="nom" id="name" class="form-control"
+                            placeholder="nom" [(ngModel)]="currentUser.nom" readonly>
+                        <ng-template #md>
+                            <input type="text" name="name" id="name" class="form-control" required
+                                data-error="Please enter your name" placeholder="nom" [(ngModel)]="contact.nom">
+                        </ng-template>
+                        <div class="help-block with-errors"></div>
+
                     </div>
 
                 </div>
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
-                        <label for="">Prenom</label>
-                        <input type="email" name="email" id="email" class="form-control" required
-                            data-error="Please enter your email" placeholder="Email" formControlName="email">
-                        <div *ngIf="email?.touched && email?.invalid">
-                            <small class="text-danger" *ngIf="email?.errors?.['required']">email
-                                est obligatoire</small>
+                        <label for="">Email</label>
 
-                        </div>
+
+                        <input *ngIf="currentUser;else ff" type="email" name="email" id="email" class="form-control"
+                            required [(ngModel)]="currentUser.email " placeholder="Email" readonly>
+                        <ng-template #ff>
+                            <input type="email" name="email" id="email" class="form-control" required
+                                data-error="Please enter your email" placeholder="Email" [(ngModel)]="contact.email">
+                        </ng-template>
                         <div class="help-block with-errors"></div>
                     </div>
 
@@ -39,13 +42,9 @@
                 <div class="col-sm-6 col-lg-6">
                     <div class="form-group">
                         <label for="">Sujet</label>
-                        <input type="text" name="msg_subject" id="msg_subject" class="form-control" required
-                            data-error="Please enter your subject" placeholder="Sujet" formControlName="sujet">
-                        <div *ngIf="sujet?.touched && sujet?.invalid">
-                            <small class="text-danger" *ngIf="sujet?.errors?.['required']">sujet
-                                est obligatoire</small>
+                        <input type="text" name="sujet" id="msg_subject" class="form-control" required
+                            data-error="Please enter your subject" placeholder="Sujet" [(ngModel)]="contact.sujet">
 
-                        </div>
                         <div class="help-block with-errors"></div>
                     </div>
 
@@ -54,30 +53,14 @@
                 <div class="col-md-12 col-lg-12">
                     <div class="form-group">
                         <label for="">Message</label>
-                        <textarea name="message" class="form-control" id="message" cols="30" rows="8" required
-                            data-error="Write your message" placeholder="Message" formControlName="msg"></textarea>
-                        <div *ngIf="msg?.touched && msg?.invalid">
-                            <small class="text-danger" *ngIf="msg?.errors?.['required']">msg
-                                est obligatoire</small>
+                        <textarea name="msg" class="form-control" id="message" cols="30" rows="8" required
+                            data-error="Write your message" placeholder="Message" [(ngModel)]="contact.msg"></textarea>
 
-                        </div>
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
 
-                <div class="col-lg-12 col-md-12">
-                    <div class="form-group">
-                        <div class="form-check agree-label">
-                            <input name="gridCheck" value="I agree to the terms and privacy policy."
-                                class="form-check-input" type="checkbox" id="gridCheck" required>
-                            <label class="form-check-label" for="gridCheck">
-                                Accept <a href="terms-condition.html">Terms & Conditions</a> And <a
-                                    href="privacy-policy.html">Privacy Policy.</a>
-                            </label>
-                            <div class="help-block with-errors gridCheck-error"></div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-md-12 col-lg-12">
                     <div class="text-center">
                         <button type="submit" (click)="addContact()" class="btn contact-btn">Submit</button>

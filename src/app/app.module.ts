@@ -21,7 +21,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { DescriptionoffreComponent } from './descriptionoffre/descriptionoffre.component';
 import { VosoffresComponent } from './vosoffres/vosoffres.component';
 import { UpdateoffreComponent } from './updateoffre/updateoffre.component';
-
+import { ListentrepriseComponent } from './listentreprise/listentreprise.component';
+import { OffrebyentComponent } from './offrebyent/offrebyent.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { OwlModule } from 'ngx-owl-carousel';
+import { TmNgOdometerModule } from 'tm-ng-odometer';
+import { AboutusComponent } from './aboutus/aboutus.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,15 +45,21 @@ import { UpdateoffreComponent } from './updateoffre/updateoffre.component';
     ProfileComponent,
     DescriptionoffreComponent,
     VosoffresComponent,
-    UpdateoffreComponent
+    UpdateoffreComponent,
+    ListentrepriseComponent,
+    OffrebyentComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgToastModule
+    NgToastModule,
+    OwlModule,
+    TmNgOdometerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

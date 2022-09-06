@@ -21,6 +21,7 @@ export class AjouteroffreComponent implements OnInit {
   userType: any;
   listRequirement: String[] = [];
   currentEntreprise = new Entreprise()
+  offre = new Offres()
   constructor(
     private service: CrudService,
     private router: Router,
@@ -133,6 +134,10 @@ export class AjouteroffreComponent implements OnInit {
       };
     }
   }
+  deleteRequirement(item: any) {
+    let index = this.listRequirement.indexOf(item)
+    this.listRequirement.splice(index, 1)
+  }
   addRequirement() {
     let data = this.addOffreForm.value;
     if (data.requirement != '') {
@@ -144,18 +149,23 @@ export class AjouteroffreComponent implements OnInit {
   }
   addOffre() {
     let data = this.addOffreForm.value;
-    console.log(data);
     data.requirement = this.listRequirement.toString()
-    console.log(data.requirement)
 
-    let offre = new Offres(
-      undefined, data.titre, data.site, data.salaire, data.localisation,
+    this.offre = new Offres(
+      undefined, data.titre, data.salaire,
       data.type, undefined, data.description, data.nbrPersonnes,
-      data.genre, data.langue, data.dateExpir, this.now.toISOString().slice(0, 10), data.niveau, this.imgURL, data.requirement, data.experience, this.currentEntreprise);
+      data.genre, data.langue, data.dateExpir, this.now.toISOString().slice(0, 10), data.niveau, data.requirement, data.experience, JSON.parse(JSON.stringify(this.currentEntreprise)));
+    this.service.getEntrepriseById(this.service.userDetail().id).subscribe(entreprise => {
+      this.currentEntreprise = entreprise
+    })
+    console.log(this.offre)
+    this.currentEntreprise.offre.push(this.offre);
+    console.log(this.currentEntreprise.offre)
 
+    this.service.updateEntreprise(this.currentEntreprise.id!, this.currentEntreprise).subscribe(() => {
+    })
 
-    console.log(offre);
-    if (data.titre == 0 || data.description == 0 || data.salaire == 0 || data.localisation == 0 || data.type == 0
+    if (data.titre == 0 || data.description == 0 || data.salaire == 0 || data.type == 0
       || data.nbrPersonnes == 0 || data.genre == 0 || data.langue == 0 || data.dateExpir == 0 || data.niveau == 0 || data.experience == 0) {
       this.toast.info({
         detail: "Erreur msg !!",
@@ -164,6 +174,7 @@ export class AjouteroffreComponent implements OnInit {
       }
       );
     }
+
     else {
       if (this.now.toISOString().slice(0, 10) > data.dateExpir) {
         this.toast.info({
@@ -172,10 +183,10 @@ export class AjouteroffreComponent implements OnInit {
       }
       else {
 
-        this.service.addOffre(offre).subscribe(
+        this.service.addOffre(this.offre).subscribe(
 
           res => {
-            console.log(res);
+            // console.log(res);
 
             this.router.navigate(['/offre']);
             this.toast.info({
@@ -183,7 +194,7 @@ export class AjouteroffreComponent implements OnInit {
             })
           },
           err => {
-            console.log(err);
+            // console.log(err);
             this.toast.error({
               detail: "Error msg",
               summary: "verifier votre formulaire"
@@ -203,14 +214,23 @@ export class AjouteroffreComponent implements OnInit {
 
   ngOnInit(): void {
     // this.service.loginRequired()
-    this.currentEntreprise = this.service.userDetail()
-    this.userType = localStorage.getItem("User")
+    this.userType = localStorage.getItem("User");
     if (this.userType == "formateur") {
       this.router.navigate(["/home"]);
       this.toast.info({
         summary: "Vous ne pouvez pas accéder à cette page"
       })
     }
+    this.service.getEntrepriseById(this.service.userDetail().id).subscribe(entreprise => {
+      this.currentEntreprise = entreprise
+      if (this.currentEntreprise.numeroTel == null || this.currentEntreprise.localisation == null || this.currentEntreprise.logo == null || this.currentEntreprise.site == null) {
+        this.router.navigate(["/profile"])
+        this.toast.info({
+          summary: "Vous devez completer votre profil pour ajoutre un offre"
+        })
+      }
+    })
+
   }
 
 }
