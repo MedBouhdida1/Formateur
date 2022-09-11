@@ -29,17 +29,18 @@
                 <div class="col-lg-6 "
                     *ngFor="let offre of listeOffres | paginate:{itemsPerPage:4,currentPage:page,totalItems:nbrOffres}">
                     <div class="job-item">
-                        <!-- <img *ngIf="offre.logo;else img" [src]="offre.logo" height="80px" width="70px" alt="Job"> -->
+                        <img [src]="offre.entreprise?.logo" height="80px" width="70px" alt="Job">
                         <!-- <ng-template #img> -->
-                        <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
-                            width="80px" height="70px" alt="">
+                        <!-- <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
+                            width="80px" height="70px" alt=""> -->
                         <!-- </ng-template> -->
                         <div class="job-inner align-items-center">
                             <div class="job-inner-left">
                                 <h3>
                                     <a routerLink="/offre/{{offre.id}}">{{offre.titre}}</a>
                                 </h3>
-                                <!-- <a class="company" href="https://{{offre.site}}" target="_blank">{{offre.site}}</a> -->
+                                <a class="company" href="https://{{offre.entreprise?.site}}"
+                                    target="_blank">{{offre.entreprise?.site}}</a>
                                 <ul>
 
                                     <li>Salaire:
@@ -48,7 +49,7 @@
                                     </li>
                                     <li>Localisation:
                                         <i class="icofont-location-pin"></i>
-                                        <!-- {{offre.localisation}} -->
+                                        {{offre.entreprise?.localisation}}
                                     </li>
 
                                     <li>Date de publication:

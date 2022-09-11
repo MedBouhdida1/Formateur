@@ -50,7 +50,7 @@ export class DescriptionoffreComponent implements OnInit {
         if (this.user == "entreprise") {
           this.service.getEntrepriseById(this.service.userDetail().id).subscribe(entre => {
             this.currentUser = entre
-            if (this.findOffre(data, this.currentUser.offre)) {
+            if (this.currentUser.offre.filter(off => off.id == data.id).length != 0) {
               this.currentOffre = data
             }
             else {
@@ -70,7 +70,7 @@ export class DescriptionoffreComponent implements OnInit {
       }
 
       this.listRequirement = this.currentOffre.requirements?.split(",")
-      console.log(this.listRequirement)
+      console.log(this.listRequirement?.length)
     })
 
   }

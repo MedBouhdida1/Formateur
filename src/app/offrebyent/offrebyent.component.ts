@@ -50,14 +50,16 @@ export class OffrebyentComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.rout.snapshot.params["id"];
 
+
     this.userType = localStorage.getItem("User")
 
-    this.service.getEntrepriseById(this.id).subscribe(entreprise => {
-      this.currentUser = entreprise;
-      this.listeOffres = this.currentUser.offre;
+
+    this.service.getOffres().subscribe(offre => {
+      this.listeOffres = offre
+      this.listeOffres = this.listeOffres.filter(off => off.entreprise?.id == this.id)
       this.listeOffres1 = this.listeOffres
       this.nbrOffres = this.listeOffres.length
-      console.log(this.listeOffres)
+
     })
   }
 

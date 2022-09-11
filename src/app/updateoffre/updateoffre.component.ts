@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { Entreprise } from '../Model/Entreprise.model';
 import { Offres } from '../Model/Offres.model';
 import { CrudService } from '../service/crud.service';
 
@@ -23,6 +24,7 @@ export class UpdateoffreComponent implements OnInit {
   id: any;
   listRequirement: String[] = []
   currentOffre = new Offres()
+  currentEntre = new Entreprise()
   constructor(
     private service: CrudService,
     private router: Router,
@@ -33,7 +35,7 @@ export class UpdateoffreComponent implements OnInit {
 
   modifierOffre() {
     this.currentOffre.requirements = this.listRequirement.toString()
-    this.currentOffre.etat == 0;
+    this.currentOffre.etat = 0;
     this.service.updateOffre(this.id, this.currentOffre).subscribe(() => {
       this.router.navigate(["/vosoffres"])
       this.toast.info({
@@ -62,10 +64,24 @@ export class UpdateoffreComponent implements OnInit {
       })
     }
     this.id = this.rout.snapshot.params["id"];
+    this.service.getEntrepriseById(this.service.userDetail().id).subscribe(entre => {
+      this.currentEntre = entre
+      this.currentEntre.offre = this.currentEntre.offre.filter(off => off.id == this.id)
+      if (this.currentEntre.offre.length == 0) {
+        this.router.navigate(["/vosoffres"])
+        this.toast.info({
+          summary: "Vous ne pouvez pas modifier cette offre"
+        })
+      }
+    })
     this.service.getOffreById(this.id).subscribe(data => {
       this.currentOffre = data
+      console.log(this.currentOffre)
       this.currentOffre.datePub = this.now.toISOString().slice(0, 10);
-      this.listRequirement = this.currentOffre.requirements!.split(",")
+      if (this.currentOffre.requirements != null) {
+        this.listRequirement = this.currentOffre.requirements!.split(",")
+      }
+      console.log(this.listRequirement)
       this.currentOffre.requirements = ''
     })
   }

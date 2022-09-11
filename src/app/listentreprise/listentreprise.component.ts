@@ -18,6 +18,7 @@ export class ListentrepriseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.id = this.service.userDetail().id
     this.userType = localStorage.getItem("User")
     this.service.getEntreprises().subscribe(data => {
       this.listEntreprises = data

@@ -21,8 +21,9 @@ export class HomeComponent implements OnInit {
   numberOffres: number = 0
   userType: any;
   now = new Date()
-  userId: any
+  userId: any;
   nbrOffres: number = 0
+  nbrEntre: number = 0
   currentFormateur = new Formateur()
   page: number = 1;
   SearchedOffre = new Offres()
@@ -80,7 +81,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // this.service.loginRequired();
     this.userType = localStorage.getItem("User")
-
+    this.userId = this.service.userDetail().id
     this.service.getOffreByEtat(1).subscribe(offre => {
       this.listeOffres = offre;
       this.listeOffres1 = offre;
@@ -96,6 +97,8 @@ export class HomeComponent implements OnInit {
     this.service.getEntreprises().subscribe(entre => {
       this.listEntr = entre
       this.listEntr = this.listEntr.filter(entre => entre.etat == 1).filter(ent => ent.logo != null)
+      this.nbrEntre = this.listEntr.length
+
     })
     if (this.userType == "formateur") {
       this.service.getFormateurById(this.service.userDetail().id).subscribe(forma => {

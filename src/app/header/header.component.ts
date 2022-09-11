@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CrudService } from '../service/crud.service';
 import { Entreprise } from '../Model/Entreprise.model';
 import { Formateur } from '../Model/Formateur.model';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-header',
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit {
 
   }
   ngOnInit(): void {
+
     this.token = localStorage.getItem("myToken")
     this.userType = localStorage.getItem("User")
     if (this.token) {

@@ -1,3 +1,5 @@
+import { Offres } from "./Offres.model";
+
 export class Formateur {
 
     constructor(
@@ -8,7 +10,9 @@ export class Formateur {
         public email?: string,
         public mdp?: string,
         public photo?: string,
-        public cv?: Blob
+        public cv?: Blob,
+        public offre: Offres[] = []
+
     ) {
 
     }

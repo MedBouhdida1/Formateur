@@ -1,6 +1,14 @@
-.ff {
+/* .ff {
     width: 20% !important;
+} */
+@media (min-width: 992px) {
+
+    .ff {
+        flex: 0 0 auto;
+        width: 20%;
+    }
 }
+
 
 .ss {
     width: 30%;

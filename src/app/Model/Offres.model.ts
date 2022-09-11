@@ -1,4 +1,5 @@
 import { Entreprise } from "./Entreprise.model";
+import { Formateur } from "./Formateur.model";
 
 export class Offres {
 
@@ -18,6 +19,8 @@ export class Offres {
         public requirements?: String,
         public experience?: String,
         public entreprise?: Entreprise,
+        public formateur: Formateur[] = []
+
     ) {
 
     }

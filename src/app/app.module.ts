@@ -27,6 +27,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { OwlModule } from 'ngx-owl-carousel';
 import { TmNgOdometerModule } from 'tm-ng-odometer';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import * as $ from "jquery";
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     UpdateoffreComponent,
     ListentrepriseComponent,
     OffrebyentComponent,
-    AboutusComponent
+    AboutusComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

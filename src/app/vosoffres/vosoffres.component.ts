@@ -64,12 +64,19 @@ export class VosoffresComponent implements OnInit {
         summary: "Vous ne pouvez pas accéder à cette page"
       })
     }
-    this.service.getEntrepriseById(this.service.userDetail().id).subscribe(entreprise => {
-      this.currentUser = entreprise;
-      this.listeOffres = this.currentUser.offre;
+    // this.service.getEntrepriseById(this.service.userDetail().id).subscribe(entreprise => {
+    //   this.currentUser = entreprise;
+    //   this.listeOffres = this.currentUser.offre;
+    //   this.listeOffres1 = this.listeOffres
+    //   this.numberOffres = this.listeOffres.length
+    //   console.log(this.listeOffres)
+    // })
+    this.service.getOffres().subscribe(offre => {
+      this.listeOffres = offre
+      this.listeOffres = this.listeOffres.filter(off => off.entreprise?.id == this.service.userDetail().id)
       this.listeOffres1 = this.listeOffres
       this.numberOffres = this.listeOffres.length
-      console.log(this.listeOffres)
+
     })
     // this.service.getOffreByEtat(1).subscribe(offre => {
     //   this.listeOffres = offre

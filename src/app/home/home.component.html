@@ -92,7 +92,7 @@
 <section class="job-area pb-100">
     <div class="container">
         <div class="section-title">
-            <h2>Listes des offres</h2>
+            <h2>Liste des offres</h2>
         </div>
         <div *ngIf="nbrOffres!=0" class=" sorting-menu">
             <ul>
@@ -109,20 +109,21 @@
                     <p>Aucune offre disponible!</p>
                 </div>
                 <div class="col-lg-6"
-                    *ngFor="let offre of listeOffres | paginate:{itemsPerPage:4,currentPage:page,totalItems:nbrOffres}">
+                    *ngFor="let offre of listeOffres | paginate:{itemsPerPage:6,currentPage:page,totalItems:nbrOffres}">
                     <div class="job-item">
 
-                        <!-- <img *ngIf="offre.logo;else img" [src]="offre.logo" height="80px" width="70px" alt="Job"> -->
+                        <img [src]="offre.entreprise?.logo" height="80px" width="70px" alt="Job">
                         <!-- <ng-template #img> -->
-                        <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
-                            width="80px" height="70px" alt="">
+                        <!-- <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
+                            width="80px" height="70px" alt=""> -->
                         <!-- </ng-template> -->
                         <div class="job-inner align-items-center">
                             <div class="job-inner-left">
                                 <h3>
                                     <a routerLink="/offre/{{offre.id}}">{{offre.titre}}</a>
                                 </h3>
-                                <!-- <a class="company" href="https://{{offre.site}}" target="_blank">{{offre.site}}</a> -->
+                                <a class="company" href="https://{{offre.entreprise?.site}}"
+                                    target="_blank">{{offre.entreprise?.site}}</a>
                                 <ul>
 
                                     <li>Salaire:
@@ -131,7 +132,7 @@
                                     </li>
                                     <li>Localisation:
                                         <i class="icofont-location-pin"></i>
-                                        <!-- {{offre.localisation}} -->
+                                        {{offre.entreprise?.localisation}}
                                     </li>
 
                                     <li>Date de publication:
@@ -175,9 +176,9 @@
                 <div class="counter-item">
                     <i class="flaticon-employee"></i>
                     <h3>
-                        <tm-ng-odometer [number]="50" [config]="{ auto: false }" [observable]="observable">
+                        <tm-ng-odometer [number]="nbrOffres" [config]="{ auto: false }" [observable]="observable">
                         </tm-ng-odometer>
-                        <span class="target">k+</span>
+                        <span class="target">+</span>
                     </h3>
                     <p>Emploi disponible</p>
                 </div>
@@ -188,7 +189,7 @@
                     <h3>
                         <tm-ng-odometer [number]="50" [config]="{ auto: false }" [observable]="observable">
                         </tm-ng-odometer>
-                        <span class="target">k+</span>
+                        <span class="target">+</span>
                     </h3>
                     <p>CV soumis</p>
                 </div>
@@ -197,9 +198,9 @@
                 <div class="counter-item">
                     <i class="flaticon-enterprise"></i>
                     <h3>
-                        <tm-ng-odometer [number]="50" [config]="{ auto: false }" [observable]="observable">
+                        <tm-ng-odometer [number]="nbrEntre" [config]="{ auto: false }" [observable]="observable">
                         </tm-ng-odometer>
-                        <span class="target">k+</span>
+                        <span class="target">+</span>
                     </h3>
                     <p>Entreprises</p>
                 </div>
@@ -293,7 +294,10 @@
                         <i class="icofont-location-pin"></i>
                         {{entre.localisation }}
                     </p>
-                    <a class="companies-btn" routerLink="/offrebyent/{{entre.id}}">Offres</a>
+                    <a *ngIf="userId==entre.id && userType=='entreprise';else rr" class="companies-btn"
+                        routerLink="/vosoffres">Offres</a>
+                    <ng-template #rr> <a class="companies-btn" routerLink="/offrebyent/{{entre.id}}">Offres</a>
+                    </ng-template>
                 </div>
 
             </div>

@@ -91,6 +91,7 @@ export class OffreComponent implements OnInit {
     this.userType = localStorage.getItem("User")
     this.service.getOffreByEtat(1).subscribe(offre => {
       this.listeOffres = offre;
+      console.log(this.listeOffres)
       this.listeOffres1 = offre;
 
       this.nbrOffres = this.listeOffres.length
