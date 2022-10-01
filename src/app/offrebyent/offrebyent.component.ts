@@ -54,13 +54,20 @@ export class OffrebyentComponent implements OnInit {
     this.userType = localStorage.getItem("User")
 
 
-    this.service.getOffres().subscribe(offre => {
-      this.listeOffres = offre
-      this.listeOffres = this.listeOffres.filter(off => off.entreprise?.id == this.id)
+    this.service.getoffresbyetatandentreprise(1, this.id).subscribe(off => {
+      this.listeOffres = off
       this.listeOffres1 = this.listeOffres
       this.nbrOffres = this.listeOffres.length
-
     })
+
+
+    // this.service.getOffres().subscribe(offre => {
+    //   this.listeOffres = offre
+    //   this.listeOffres = this.listeOffres.filter(off => off.entreprise?.id == this.id)
+    //   this.listeOffres1 = this.listeOffres
+    //   this.nbrOffres = this.listeOffres.length
+
+    // })
   }
 
 }

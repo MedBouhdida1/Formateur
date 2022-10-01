@@ -23,7 +23,8 @@
                                                     (change)="onSelectFile($event)">
                                                 <img [src]="imgURL" height="200" *ngIf="imgURL;else sh">
                                                 <ng-template #sh>
-                                                    <img [src]="currentEntreprise.logo" height="200">
+                                                    <img *ngIf="currentEntreprise.logo" [src]="currentEntreprise.logo"
+                                                        height="200">
                                                 </ng-template>
 
 
@@ -113,7 +114,8 @@
                                                         (change)="onSelectFile($event)">
                                                     <img [src]="imgURL" height="200" *ngIf="imgURL;else d">
                                                     <ng-template #d>
-                                                        <img [src]="currentFormateur.photo" height="200">
+                                                        <img *ngIf="currentFormateur.photo"
+                                                            [src]="currentFormateur.photo" height="200">
                                                     </ng-template>
 
 
@@ -142,11 +144,14 @@
                                                 name="numeroTel" [(ngModel)]="currentFormateur.numeroTel">
                                         </div>
                                         <div class="form-group">
-                                            <label>Curriculum Vitae</label>
+                                            <label>Curriculum Vitae</label><br>
+                                            <a *ngIf="currentFormateur.cv" (click)="openDoc(currentFormateur.cv)">Cv
+                                                selectionné</a>
+
                                             <input type="file" accept="pdf/*" (change)="onSelectCV($event)"
-                                                class="form-control" placeholder="Winbrans.com">
+                                                class="form-control">
+
                                         </div>
-                                        <a [href]="file" download="cv.pdf">Download</a>
                                         <div class="text-right d-flex justify-content-center">
                                             <button type="submit" (click)="modifierFormateur()"
                                                 class="btn create-photo-btn">Modifier</button>

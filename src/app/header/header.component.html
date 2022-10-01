@@ -24,7 +24,8 @@
                         </li>
                         <li class="nav-item">
                             <a routerLink="/offre" class="nav-link dropdown-toggle">Offres <i
-                                    class="icofont-simple-down" *ngIf="userType=='entreprise'"></i></a>
+                                    class="icofont-simple-down"
+                                    *ngIf="userType=='entreprise'||userType=='formateur'"></i></a>
                             <ul class="dropdown-menu" *ngIf="userType=='entreprise'">
                                 <li class="nav-item">
                                     <a routerLink="/offre" class="nav-link">Liste des offres</a>
@@ -35,6 +36,17 @@
 
                                 <li class="nav-item">
                                     <a routerLink="/ajouteroffre" class="nav-link">Ajouter une offre</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/postulation" class="nav-link">Vos postulation</a>
+                                </li>
+                            </ul>
+                            <ul class="dropdown-menu" *ngIf="userType=='formateur'">
+                                <li class="nav-item">
+                                    <a routerLink="/offre" class="nav-link">Liste des offres</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/postulation" class="nav-link">Vos postulation</a>
                                 </li>
                             </ul>
                         </li>
@@ -74,7 +86,7 @@
                                         height="40px" width="40px" alt="">
                                 </ng-template>
                                 <ng-template #img>
-                                    <img class="img-profile rounded-circle" [src]="user.photo" height="40px">
+                                    <img class="img-profile " [src]="user.photo" height="40 px">
 
                                 </ng-template>
                                 <ul class="dropdown-menu">
@@ -90,7 +102,10 @@
                                             Deconnexion
                                         </a>
                                     </li>
-                                    <a [href]="file" download="cv.pdf">Download</a>
+                                    <!-- <a href="javascript:void(0)" style="cursor:pointer" (click)="downloadPdf(user.cv)">
+                                        Download PDF
+                                    </a>
+                                    <a (click)="openDoc(user.cv)">OpenViewer </a> -->
 
 
                                 </ul>

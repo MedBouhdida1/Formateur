@@ -29,6 +29,8 @@ import { TmNgOdometerModule } from 'tm-ng-odometer';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import * as $ from "jquery";
+import { PostulationComponent } from './postulation/postulation.component';
+import { PostulationbyoffreComponent } from './postulationbyoffre/postulationbyoffre.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ import * as $ from "jquery";
     ListentrepriseComponent,
     OffrebyentComponent,
     AboutusComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    PostulationComponent,
+    PostulationbyoffreComponent
   ],
   imports: [
     BrowserModule,

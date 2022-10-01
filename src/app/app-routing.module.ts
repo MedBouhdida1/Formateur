@@ -12,6 +12,8 @@ import { LoginformateurComponent } from './loginformateur/loginformateur.compone
 import { OffreComponent } from './offre/offre.component';
 import { OffrebyentComponent } from './offrebyent/offrebyent.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { PostulationComponent } from './postulation/postulation.component';
+import { PostulationbyoffreComponent } from './postulationbyoffre/postulationbyoffre.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterentrepriseComponent } from './registerentreprise/registerentreprise.component';
@@ -32,13 +34,15 @@ const routes: Routes = [
   { path: 'loginformateur', component: LoginformateurComponent },
   { path: 'loginentreprise', component: LoginentrepriseComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'offre/:id', component: DescriptionoffreComponent, canActivate: [AuthGuard] },
+  { path: 'offre/:id', component: DescriptionoffreComponent, },
   { path: 'vosoffres', component: VosoffresComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent },
   { path: 'listentreprises', component: ListentrepriseComponent },
   { path: 'modifieroffre/:id', component: UpdateoffreComponent, canActivate: [AuthGuard] },
   { path: 'offrebyent/:id', component: OffrebyentComponent },
   { path: 'aboutus', component: AboutusComponent },
+  { path: 'postulation', component: PostulationComponent, canActivate: [AuthGuard] },
+  { path: 'postulationbyoffre/:id', component: PostulationbyoffreComponent, canActivate: [AuthGuard] },
   { path: '**', component: PagenotfoundComponent }
 
 ];

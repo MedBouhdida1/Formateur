@@ -6,14 +6,13 @@
         <div class="post-job-item">
             <form [formGroup]="addOffreForm" (ngsubmit)="addOffre()">
                 <div class="post-job-heading">
-                    <h2>Ajouter un offre</h2>
+                    <h2>Ajouter une offre</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Titre d'emploi</label>
-                            <input type="text" class="form-control" placeholder="UX/UI Designer"
-                                formControlName="titre">
+                            <input type="text" class="form-control" formControlName="titre">
                             <div *ngIf="titre?.touched && titre?.invalid">
                                 <small class="text-danger" *ngIf="titre?.errors?.['required']">Titre
                                     est obligatoire</small>
@@ -26,8 +25,7 @@
                         <div class="form-group">
                             <label>Niveau</label>
                             <div class="job-category-area">
-                                <input type="text" class="form-control" placeholder="Amazon.com"
-                                    formControlName="niveau">
+                                <input type="text" class="form-control" formControlName="niveau">
                             </div>
                             <div *ngIf="niveau?.touched && niveau?.invalid">
                                 <small class="text-danger" *ngIf="niveau?.errors?.['required']">niveau
@@ -40,8 +38,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Nombres de personnes</label>
-                            <input type="number" class="form-control" placeholder="UX/UI Designer"
-                                formControlName="nbrPersonnes">
+                            <input type="number" class="form-control" formControlName="nbrPersonnes">
                             <div *ngIf="nbrPersonnes?.touched && nbrPersonnes?.invalid">
                                 <small class="text-danger" *ngIf="nbrPersonnes?.errors?.['required']">nbrPersonnes
                                     est obligatoire</small>
@@ -54,8 +51,7 @@
                         <div class="form-group">
                             <label>Experience d'annees</label>
                             <div class="job-category-area">
-                                <input type="number" class="form-control" placeholder="Amazon.com"
-                                    formControlName="experience">
+                                <input type="number" class="form-control" formControlName="experience">
                             </div>
                             <div *ngIf="experience?.touched && experience?.invalid">
                                 <small class="text-danger" *ngIf="experience?.errors?.['required']">experience
@@ -72,8 +68,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Langue</label>
-                            <input type="text" class="form-control" placeholder="UX/UI Designer"
-                                formControlName="langue">
+                            <input type="text" class="form-control" formControlName="langue">
                             <div *ngIf="langue?.touched && langue?.invalid">
                                 <small class="text-danger" *ngIf="langue?.errors?.['required']">langue
                                     est obligatoire</small>
@@ -89,8 +84,7 @@
                         <div class="form-group">
                             <div class="job-currency-area">
                                 <label>Salaire</label>
-                                <input type="text" class="form-control" placeholder="Winbrans.com"
-                                    formControlName="salaire">
+                                <input type="text" class="form-control" formControlName="salaire">
                                 <select class="form-select" aria-label="Default select example">
                                     <option>TND</option>
 
@@ -120,8 +114,7 @@
                         <div class="form-group">
                             <label>Date d'expiration</label>
                             <div class="job-category-area">
-                                <input type="date" class="form-control" placeholder="Amazon.com"
-                                    formControlName="dateExpir">
+                                <input type="date" class="form-control" formControlName="dateExpir">
                             </div>
                             <div *ngIf="dateExpir?.touched && dateExpir?.invalid">
                                 <small class="text-danger" *ngIf="dateExpir?.errors?.['required']">dateExpir
@@ -144,8 +137,8 @@
                                 </li>
 
                             </ul>
-                            <input type="text" class="form-control" #filterName placeholder="UX/UI Designer"
-                                name="requirement" formControlName="requirement">
+                            <input type="text" class="form-control" #filterName name="requirement"
+                                formControlName="requirement">
 
                         </div>
 

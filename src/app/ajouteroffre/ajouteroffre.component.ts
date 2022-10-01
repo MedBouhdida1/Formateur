@@ -143,7 +143,7 @@ export class AjouteroffreComponent implements OnInit {
   addRequirement() {
     let data = this.addOffreForm.value;
     if (data.requirement != '') {
-      this.listRequirement.push(data.requirement);
+      this.listRequirement.push(data.requirement + ",");
     }
     //Reset input
     console.log(this.listRequirement)
@@ -154,7 +154,9 @@ export class AjouteroffreComponent implements OnInit {
     if (data.requirement != '') {
       data.requirement = this.listRequirement.toString()
     }
-    data.requirement = null
+    else {
+      data.requirement = null
+    }
     this.offre = new Offres(
       undefined, data.titre, data.salaire,
       data.type, undefined, data.description, data.nbrPersonnes,
@@ -163,20 +165,20 @@ export class AjouteroffreComponent implements OnInit {
       this.currentEntreprise = entreprise
     })
     //
-    this.offre.formateur.push(this.test)
+    // this.offre.formateur.push(this.test)
     //
     console.log(this.offre)
     this.currentEntreprise.offre.push(this.offre);
     console.log(this.currentEntreprise.offre)
     //TODO:
-    this.test.offre.push(JSON.parse(JSON.stringify(this.offre)))
-    this.service.updateFormateur(2, this.test).subscribe(() => {
+    // this.test.offre.push(JSON.parse(JSON.stringify(this.offre)))
+    // this.service.updateFormateur(2, this.test).subscribe(() => {
 
-    })
+    // })
 
     this.service.updateEntreprise(this.currentEntreprise.id!, this.currentEntreprise).subscribe(() => {
     })
-    //
+
 
     if (data.titre == 0 || data.description == 0 || data.salaire == 0 || data.type == 0
       || data.nbrPersonnes == 0 || data.genre == 0 || data.langue == 0 || data.dateExpir == 0 || data.niveau == 0 || data.experience == 0) {
@@ -201,7 +203,7 @@ export class AjouteroffreComponent implements OnInit {
           res => {
             console.log(res);
 
-            this.router.navigate(['/offre']);
+            this.router.navigate(['/vosoffres']);
             this.toast.info({
               summary: "Votre demande est en cours de traitement"
             })

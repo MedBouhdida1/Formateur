@@ -9,3 +9,7 @@
 .app-area {
     margin-bottom: 250px;
 }
+
+a {
+    cursor: pointer;
+}

@@ -71,13 +71,18 @@ export class VosoffresComponent implements OnInit {
     //   this.numberOffres = this.listeOffres.length
     //   console.log(this.listeOffres)
     // })
-    this.service.getOffres().subscribe(offre => {
-      this.listeOffres = offre
-      this.listeOffres = this.listeOffres.filter(off => off.entreprise?.id == this.service.userDetail().id)
+    this.service.getOffresByEntreprise(this.service.userDetail().id).subscribe(entre => {
+      this.listeOffres = entre
       this.listeOffres1 = this.listeOffres
       this.numberOffres = this.listeOffres.length
-
     })
+    // this.service.getOffres().subscribe(offre => {
+    //   this.listeOffres = offre
+    //   this.listeOffres = this.listeOffres.filter(off => off.entreprise?.id == this.service.userDetail().id)
+    //   this.listeOffres1 = this.listeOffres
+    //   this.numberOffres = this.listeOffres.length
+
+    // })
     // this.service.getOffreByEtat(1).subscribe(offre => {
     //   this.listeOffres = offre
     //   this.numberOffres = offre.length

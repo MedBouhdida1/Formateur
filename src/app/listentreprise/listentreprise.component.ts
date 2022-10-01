@@ -11,15 +11,18 @@ import { CrudService } from '../service/crud.service';
 export class ListentrepriseComponent implements OnInit {
   listEntreprises: Entreprise[] = []
   id: number = 0;
-  userType: any;
+  user: any
   constructor(
     private router: Router,
     private service: CrudService,
   ) { }
 
   ngOnInit(): void {
-    this.id = this.service.userDetail().id
-    this.userType = localStorage.getItem("User")
+    this.user = localStorage.getItem("User")
+    if (this.user) {
+      this.id = this.service.userDetail().id;
+
+    }
     this.service.getEntreprises().subscribe(data => {
       this.listEntreprises = data
       this.listEntreprises = this.listEntreprises.filter(entre => entre.etat == 1).filter(ent => ent.logo != null)

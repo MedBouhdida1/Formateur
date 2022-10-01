@@ -124,5 +124,21 @@ export class CrudService {
     getEntreprises(): Observable<Entreprise[]> {
         return this.http.get<Entreprise[]>(this.apiUrl + "/entreprise")
     }
+    public getOffresByFormateurId(id: number): Observable<Offres[]> {
+        return this.http.get<Offres[]>(`${this.apiUrl}/offres/offresbyfomateurid/${id}`)
+    }
+    public getFormateursByOffreId(id: number): Observable<Formateur[]> {
+        return this.http.get<Formateur[]>(`${this.apiUrl}/formateur/formateursbyoffreid/${id}`)
+    }
+    public getOffresByEntreprise(id: number): Observable<Offres[]> {
+        return this.http.get<Offres[]>(`${this.apiUrl}/offres/offresbyentrepriseid/${id}`)
+    }
+
+    public getoffresbyetatandentreprise(etat: number, id: number): Observable<Offres[]> {
+        return this.http.get<Offres[]>(`${this.apiUrl}/offres/offresbyetatandentreprise/${etat}/${id}`)
+    }
+    public getEntrerpisebyoffre(id: number): Observable<Entreprise> {
+        return this.http.get<Entreprise>(`${this.apiUrl}/entreprise/entreprisebyoffre/${id}`)
+    }
 
 }

@@ -9,7 +9,7 @@
 
                     <div class="banner-btn">
                         <a *ngIf="userType==null" routerLink="/login">Créer votre profil</a>
-                        <a *ngIf="userType!=null" routerLink="/profile">Créer votre profil</a>
+                        <a *ngIf="userType=='formateur'" routerLink="/profile">Créer votre profil</a>
                         <a *ngIf="userType==null" routerLink="/loginformateur">Ajouter votre cv</a>
                         <a *ngIf="userType=='formateur'" routerLink="/profile">Ajouter votre cv</a>
                     </div>
@@ -139,6 +139,7 @@
                                         <i class="icofont-ui-calendar"></i> {{offre.datePub}}
                                     </li>
                                     <li>Date d'expiration:
+                                        <i class="icofont-clock-time"></i>
                                         {{offre.dateExpir}}
                                     </li>
                                 </ul>
@@ -146,7 +147,7 @@
                             <div class="job-inner-right">
                                 <ul>
                                     <li *ngIf="userType=='formateur'||userType==null ">
-                                        <a routerLink="#" (click)="apply()">Postuler</a>
+                                        <a (click)="apply(offre.id!)">Postuler</a>
                                     </li>
 
 

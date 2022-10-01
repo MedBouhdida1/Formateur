@@ -16,13 +16,14 @@ export class OffreComponent implements OnInit {
   listeOffres1: Offres[] = []
   numberOffres: number = 0
   userType: any;
+  check: number = 0;
   now = new Date()
   userId: any
   nbrOffres: number = 0
   currentFormateur = new Formateur()
   page: number = 1;
   SearchedOffre = new Offres()
-
+  offre = new Offres()
   constructor(
     private route: Router,
     private service: CrudService,
@@ -70,7 +71,7 @@ export class OffreComponent implements OnInit {
 
   // }
   //add apply
-  apply() {
+  apply(id: number) {
     if (this.userType == null) {
       this.route.navigate(["/loginformateur"]);
       this.toast.info({
@@ -83,6 +84,45 @@ export class OffreComponent implements OnInit {
       this.toast.info({
         summary: "Vous devez completer votre profil"
       })
+    }
+    else {
+      this.service.getOffreById(id).subscribe(off => {
+
+        this.offre = off
+        console.log(this.offre)
+        // this.offre.formateur.push(JSON.parse(JSON.stringify(this.currentFormateur)))
+        // this.service.updateOffre(id, this.offre).subscribe(() => {
+
+        // }) 
+        // TODO early exit main function
+        for (off of this.currentFormateur.offre) {
+          if (this.offre.id == off.id) {
+            this.check = 1
+            this.toast.warning({
+              summary: "vous avez deja postuler dans cette offre"
+            })
+            this.route.navigate(["/postulation"])
+          }
+        }
+        // this.currentFormateur.offre.forEach((off) => {
+
+
+        // })
+        if (this.check == 0) {
+          this.currentFormateur.offre.push(this.offre)
+          this.service.updateFormateur(this.currentFormateur.id!, this.currentFormateur).subscribe(() => {
+            this.route.navigate(["/postulation"])
+
+          })
+        }
+
+
+      })
+
+      // this.offre.formateur.push(JSON.parse(JSON.stringify(this.currentFormateur)))
+      // this.service.updateOffre(id, this.offre).subscribe(() => {
+
+      // })
     }
 
   }

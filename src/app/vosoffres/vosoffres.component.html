@@ -53,7 +53,15 @@
                                         <i class="icofont-ui-calendar"></i> {{offre.datePub}}
                                     </li>
                                     <li>Date d'expiration:
+                                        <i class="icofont-clock-time"></i>
+
                                         {{offre.dateExpir}}
+                                    </li>
+                                    <li><a routerLink="/postulationbyoffre/{{offre.id}}" style="    color: #186fc9;
+                                        border-color: #186fc9;
+                                        background-color: #f1f7fc; text-align: center;">Voir liste des postutions de
+                                            l'offre</a>
+                                        <i class="icofont-listine-dots"></i>
                                     </li>
                                     <li *ngIf="offre.etat==1" style="    border-color: #26ae62;
                                     background-color: #e9fff3;
@@ -65,6 +73,7 @@
                                     background-color: #f1f7fc; text-align: center;">
                                         En cours de traitement
                                     </li>
+
                                 </ul>
                             </div>
                             <div class="job-inner-right">

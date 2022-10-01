@@ -1,0 +1,100 @@
+<app-header></app-header>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Liste des postulations</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table *ngIf="user=='formateur'" class="table table-responsive-xl">
+                        <thead>
+                            <tr>
+                                <th>Offre</th>
+                                <th>Entreprise</th>
+                                <th>Email</th>
+                                <th>Telephone</th>
+                                <th>Etat de l'offre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="alert" role="alert" *ngFor="let offre of listeOffresByFormateur">
+                                <td class="d-flex align-items-center">
+                                    <!-- <div class="img" style="background-image: url(images/person_1.jpg);"></div> -->
+                                    <div class=" email">
+                                        <span><a routerLink="/offre/{{offre.id}}">{{offre.titre}}</a></span>
+                                        <span>Ajoutée: {{offre.datePub}}</span>
+                                    </div>
+                                </td>
+                                <td><img src="{{offre.entreprise?.logo}}" height="30px"><a class="company"
+                                        href="https://{{offre.entreprise?.site}}"
+                                        target="_blank">{{offre.entreprise?.nom}}</a></td>
+                                <td><a href="mailto:{{offre.entreprise?.email}}"><span class="__cf_email__"
+                                            data-cfemail="325a575e5e5d725553505e571c515d5f">{{offre.entreprise?.email}}</span></a>
+                                </td>
+
+                                <td><a href="tel:{{offre.entreprise?.numeroTel}}">{{offre.entreprise?.numeroTel}}</a>
+                                </td>
+                                <td *ngIf="offre.dateExpir!>now.toISOString().slice(0, 10);else sh" class="status"><span
+                                        class="active">Active</span></td>
+                                <ng-template #sh>
+                                    <td class="status"><span class="Danger">Expiré</span></td>
+                                </ng-template>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <table *ngIf="user=='entreprise'" class="table table-responsive-xl">
+                        <thead>
+                            <tr>
+                                <th>Offre</th>
+                                <th>Candidat</th>
+                                <th>Email</th>
+                                <th>Telephone</th>
+                                <th>Cv</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let off of listeOffres">
+                            <!-- <tr class="alert" role="alert" *ngFor="let lst of liste | keyvalue"> -->
+                            <tr class="alert" role="alert" *ngFor="let forma of off.formateur;">
+                                <td><a routerLink="/offre/{{off.id}}">{{off.titre}}</a></td>
+                                <!-- <div >{{(getEntreprise(off.id!)|async)?.nom}}</div> -->
+                                <td class="d-flex align-items-center">
+                                    <div class="img" style="background-image: url({{forma.photo}});"></div>
+                                    <div class=" email">
+                                        <!-- <span>{{formateur.offre}}</span> -->
+                                        <span class="nom">{{forma.nom}} {{forma.prenom}}</span>
+                                    </div>
+                                </td>
+
+                                <td><a href="mailto:{{forma.email}}"><span class="__cf_email__"
+                                            data-cfemail="325a575e5e5d725553505e571c515d5f">{{forma.email}}</span></a>
+                                </td>
+
+                                <td><a href="tel:{{forma.numeroTel}}">{{forma.numeroTel}}</a>
+                                </td>
+                                <td><a><img src="https://f.hellowork.com/blogdumoderateur/2013/07/pdf.png" height="50px"
+                                            class="cv" (click)="openDoc(forma.cv)"> </a>
+                                </td>
+
+                                <!-- <td *ngIf="offre.dateExpir!>now.toISOString().slice(0, 10);else sh" class="status"><span
+                                        class="active">Active</span></td>
+                                <ng-template #sh>
+                                    <td class="status"><span class="Danger">Expiré</span></td>
+                                </ng-template> -->
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

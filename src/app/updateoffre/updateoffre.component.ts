@@ -45,7 +45,7 @@ export class UpdateoffreComponent implements OnInit {
   }
   addRequirement() {
     if (this.currentOffre.requirements != '') {
-      this.listRequirement.push(this.currentOffre.requirements!);
+      this.listRequirement.push(this.currentOffre.requirements! + ",");
     }
     //Reset input
     console.log(this.listRequirement)
@@ -79,7 +79,7 @@ export class UpdateoffreComponent implements OnInit {
       console.log(this.currentOffre)
       this.currentOffre.datePub = this.now.toISOString().slice(0, 10);
       if (this.currentOffre.requirements != null) {
-        this.listRequirement = this.currentOffre.requirements!.split(",")
+        this.listRequirement = this.currentOffre.requirements!.split(",,")
       }
       console.log(this.listRequirement)
       this.currentOffre.requirements = ''

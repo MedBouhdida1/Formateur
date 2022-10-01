@@ -18,7 +18,7 @@
                         <i class="icofont-location-pin"></i>
                         {{ent.localisation}}
                     </p>
-                    <a *ngIf="id==ent.id && userType=='entreprise';else rr" class="companies-btn"
+                    <a *ngIf="id==ent.id && user=='entreprise';else rr" class="companies-btn"
                         routerLink="/vosoffres">Offres</a>
                     <ng-template #rr> <a class="companies-btn" routerLink="/offrebyent/{{ent.id}}">Offres</a>
                     </ng-template>
