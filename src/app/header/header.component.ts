@@ -43,6 +43,13 @@ export class HeaderComponent implements OnInit {
 
 
   }
+  toggleTitle() {
+    $('.navbar-nav').slideToggle();
+  }
+  toggleOffre() {
+    $('.dropdown-menu').slideToggle();
+  }
+
   downloadPdf(pdfURL: any) {
     const pdfName = 'Cv';
     FileSaver.saveAs(pdfURL, pdfName);
@@ -51,7 +58,6 @@ export class HeaderComponent implements OnInit {
     window.open(pdfUrl, '_blank', '');
   }
   ngOnInit(): void {
-
     this.token = localStorage.getItem("myToken")
     this.userType = localStorage.getItem("User")
     if (this.token) {
@@ -77,6 +83,7 @@ export class HeaderComponent implements OnInit {
 
 
     }
+
 
   }
 

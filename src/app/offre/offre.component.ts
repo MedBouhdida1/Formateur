@@ -102,15 +102,25 @@ export class OffreComponent implements OnInit {
               summary: "vous avez deja postuler dans cette offre"
             })
             this.route.navigate(["/postulation"])
+            return;
           }
         }
         // this.currentFormateur.offre.forEach((off) => {
-
+        if (this.offre.dateExpir! < this.now.toISOString().slice(0, 10)) {
+          this.toast.warning({
+            summary: "Cette offre a ete expiré"
+          })
+          this.route.navigate(["/offre"])
+          return;
+        }
 
         // })
         if (this.check == 0) {
           this.currentFormateur.offre.push(this.offre)
           this.service.updateFormateur(this.currentFormateur.id!, this.currentFormateur).subscribe(() => {
+            this.toast.success({
+              summary: "Vous avez postuler à l'offre " + this.offre.titre + " de l'entreprise " + this.offre.entreprise?.nom
+            })
             this.route.navigate(["/postulation"])
 
           })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Observable, Observer, share } from 'rxjs';
@@ -30,7 +30,8 @@ export class HomeComponent implements OnInit {
   listEntr: Entreprise[] = []
   offre = new Offres()
   check: number = 0;
-
+  listForma: Formateur[] = []
+  numberForma: number = 0
   public observable: Observable<boolean>;
   private observer!: Observer<boolean>;
   constructor(
@@ -39,8 +40,14 @@ export class HomeComponent implements OnInit {
     private service: CrudService,
     private toast: NgToastService) {
     this.observable = new Observable<boolean>((observer: any) => this.observer = observer).pipe(share());
+    // $(document).ready(function () {
+    //   if (window.location.pathname + window.location.hash == '/index.html#contact') {
+    //     this.observer.next(true)
+    //   }
+    // });
     setTimeout(() => this.observer.next(true), 5000);
   }
+
   Tous() {
     this.listeOffres = this.listeOffres1;
   }
@@ -123,6 +130,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // this.service.loginRequired();
+    this.service.getFormateurs().subscribe(lstfor => {
+      this.listForma = lstfor.filter(forma => forma.cv != null)
+      this.numberForma = this.listForma.length
+    })
     this.userType = localStorage.getItem("User")
     if (this.userType) {
       this.userId = this.service.userDetail().id

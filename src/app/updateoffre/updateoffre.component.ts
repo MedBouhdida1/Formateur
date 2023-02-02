@@ -23,6 +23,7 @@ export class UpdateoffreComponent implements OnInit {
   now = new Date()
   id: any;
   listRequirement: String[] = []
+  listRequirement1: String[] = []
   currentOffre = new Offres()
   currentEntre = new Entreprise()
   constructor(
@@ -80,6 +81,10 @@ export class UpdateoffreComponent implements OnInit {
       this.currentOffre.datePub = this.now.toISOString().slice(0, 10);
       if (this.currentOffre.requirements != null) {
         this.listRequirement = this.currentOffre.requirements!.split(",,")
+        for (let requir of this.listRequirement) {
+          this.listRequirement1.push(requir + ',')
+        }
+        this.listRequirement = this.listRequirement1
       }
       console.log(this.listRequirement)
       this.currentOffre.requirements = ''

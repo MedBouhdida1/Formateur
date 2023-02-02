@@ -90,7 +90,6 @@ export class CrudService {
             let decodeToken = this.helper.decodeToken(token);
             return decodeToken.data
         }
-
     }
     addContact(contact: Contact) {
         return this.http.post<any>(this.contactUrl, contact);
@@ -139,6 +138,9 @@ export class CrudService {
     }
     public getEntrerpisebyoffre(id: number): Observable<Entreprise> {
         return this.http.get<Entreprise>(`${this.apiUrl}/entreprise/entreprisebyoffre/${id}`)
+    }
+    getFormateurs(): Observable<Formateur[]> {
+        return this.http.get<Formateur[]>(this.apiUrl + "/formateur")
     }
 
 }
